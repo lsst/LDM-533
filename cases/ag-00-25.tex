@@ -1,0 +1,82 @@
+\subsection{AG-00-25: Scientific Verification of DIASource Catalog}
+\label{ag-00-25}
+
+\subsubsection{Requirements}
+
+DMS-REQ-0269, DMS-REQ-0270, DMS-REQ-0347, DMS-REQ-0331.
+
+\subsubsection{Test items}
+\label{ag-00-25-items}
+
+This test will check that the difference image source catalogs 
+delivered by the Alert Generation science
+payload meet the requirements laid down by \citeds{LSE-61}.
+
+Specifically, this will demonstrate that:
+
+\begin{itemize}
+
+  \item{Measurements in the catalog are presented in flux units (DMS-REQ-0347);} 
+  \item{Derived quantities are provided in pre-computed columns (DMS-REQ-0331);} 
+\item{Each DIASource record contains required attributes
+	(DMS-REQ-0269).}
+
+\item{Faint DIASources satisfying additional criteria are stored
+	(DMS-REQ-0270).}
+
+\end{itemize}
+
+This test does not include quantitative targets for the science quality criteria; we instead require for each test that we be able to quickly construct a plot in which such a target can be visualized.
+
+\subsubsection{Intercase dependencies}
+
+\begin{itemize}
+
+  \item{\hyperref[ag-00-00]{AG-00-00}}
+  \item{\hyperref[ag-00-10]{AG-00-10}}
+
+\end{itemize}
+
+\subsubsection{Environmental needs}
+
+\paragraph{Hardware}
+
+The test shall be carried out on a machine with at least 16\,GB of RAM and
+multiple CPU cores which has access to the \texttt{/datasets} shared (GPFS)
+filesystem at the LSST Data Facility.
+
+\paragraph{Software}
+
+Release 14.0 of the DM Software Stack will be pre-installed (following the
+procedure described in \hyperref[ag-00-00]{AG-00-00}).
+
+\subsubsection{Input specification}
+
+A complete processing of the DECam ``HiTS'' dataset, as defined at
+\url{https://dmtn-039.lsst.io/} and
+\url{https://github.com/lsst/ap_verify_hits2015}, through the Alert
+Generation science payload.
+
+This dataset shall be made available in a standard LSST data repository,
+accessible via the ``Data Butler''.
+
+It is not required that all combinations of visit and CCD have been processed
+successfully: a number of failures are expected. However, documentation to
+describe processing failures should be provided.
+
+\subsubsection{Output specification}
+
+None.
+
+\subsubsection{Procedure}
+
+\begin{itemize}
+
+  \item{The DM Stack shall be initialized using the \texttt{loadLSST} script
+  (as described in \hyperref[ag-00-00]{ag-00-00}).}
+
+  \item{A ``Data Butler'' will be initialized to access the repository.}
+
+  \item{Scripts from the \texttt{pipe\_analysis} package will be run on every visit to check for the presence of data products and make plots.}
+
+\end{itemize}
