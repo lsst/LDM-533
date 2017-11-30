@@ -1,30 +1,26 @@
-\subsection{AG-00-15: Scientific Verification of Processed Visit Images}
+\subsection{AG-00-15: Scientific Verification of Difference Images}
 \label{ag-00-15}
 
 \subsubsection{Requirements}
 
-DMS-REQ-0069, DMS-REQ-0327, DMS-REQ-0029, DMS-REQ-0070,
-DMS-REQ-0030, DMS-REQ-0072.
+DMS-REQ-0010, DMS-REQ-0074, 
 
 \subsubsection{Test items}
 \label{ag-00-15-items}
 
-This test will check that the Processed Visit Images (PVIs) delivered by the
-alert generation science payload meet the requirements laid down by \citeds{LSE-61}.
+This test will check that the difference images delivered by the
+Alert Generation science payload meet the requirements laid down by \citeds{LSE-61}.
 
 Specifically, this will demonstrate that:
 
 \begin{itemize}
 
-  \item{Processed visit images have been generated and persisted during
+  \item{Difference images have been generated and persisted during
   payload execution;}
-  \item{Each PVI includes a background model (DMS-REQ-0327), photometric
-  zero-point (DMS-REQ-0029), spatially-varying PSF (DMS-REQ-0070) and WCS
-  (DMS-REQ-0030).}
-  \item{PSF models correctly predict the ellipticities of stars over the field of view.}
-  \item{Saturated pixels are correctly masked.}
-  \item{Pixels affected by cosmic rays are correctly masked.}
-  \item{The background is not oversubtracted around bright objects.}
+  \item{Each difference image includes information about the identity of
+	the input exposures, and metadata such as a representation of the
+		PSF matching kernel (DMS-REQ-0074);}
+  \item{Masks are correctly propagated from the input images.}
 
 \end{itemize}
 
@@ -35,7 +31,7 @@ This test does not include quantitative targets for the science quality criteria
 \begin{itemize}
 
   \item{\hyperref[ag-00-00]{AG-00-00}}
-  \item{\hyperref[ag-00-10]{AG-00-10}}
+  \item{\hyperref[ag-00-05]{AG-00-05}}
 
 \end{itemize}
 
@@ -79,13 +75,12 @@ None.
 
   \item{A ``Data Butler'' will be initialized to access the repository.}
 
-  \item{For each processed CCD, the PVI will be retrieved from the Butler, and
+  \item{For each processed CCD, the difference image 
+	  will be retrieved from the Butler, and
   the existence of all components described in \S\ref{ag-00-15-items} will be
   verified.}
 
-  \item{Scripts from the \texttt{pipe\_analysis} package will be run on
-	  every visit to check for the presence of data products and make
-		plots.}
+  \item{Scripts from the \texttt{pipe\_analysis} package will be run on every visit to check for the presence of data products and make plots}
 
   \item{Five sensors will be chosen at random from each of two visits and inspected by eye for unmasked artifacts.}
 

@@ -1,39 +1,42 @@
-\subsection{AG-00-25: Scientific Verification of DIASource Catalog}
-\label{ag-00-25}
+\subsection{AG-00-25: Scientific Verification of DIAObject Catalog}
+\label{AG-00-25}
 
 \subsubsection{Requirements}
 
-DMS-REQ-0269, DMS-REQ-0270, DMS-REQ-0347, DMS-REQ-0331.
+DMS-REQ-0285, DMS-REQ-0271, DMS-REQ-0272, DMS-REQ-0347, DMS-REQ-0331
 
 \subsubsection{Test items}
 \label{ag-00-25-items}
 
-This test will check that the difference image source catalogs 
-delivered by the Alert Generation science
+This test will check that the DIAObject catalogs delivered by the Alert
+Generation science
 payload meet the requirements laid down by \citeds{LSE-61}.
 
 Specifically, this will demonstrate that:
 
 \begin{itemize}
 
-  \item{Measurements in the catalog are presented in flux units (DMS-REQ-0347);} 
-  \item{Derived quantities are provided in pre-computed columns (DMS-REQ-0331);} 
-\item{Each DIASource record contains required attributes
-	(DMS-REQ-0269).}
-
-\item{Faint DIASources satisfying additional criteria are stored
-	(DMS-REQ-0270).}
-
+  \item{Measurements in the catalog are presented in flux units
+  (DMS-REQ-0347);}
+  \item{Derived quantities are provided in pre-computed columns
+  (DMS-REQ-0331);}
+\item{Each DIAObject record contains the required attributes (DMS-REQ-2071 \&
+	DMS-REQ-0130);}
+	\item{Each DIAObject record characterizes variability using
+		DIASources contained in the required time interval
+		(DMS-REQ-0319).}
 \end{itemize}
 
 This test does not include quantitative targets for the science quality criteria; we instead require for each test that we be able to quickly construct a plot in which such a target can be visualized.
+
+All science quality tests in this section shall distinguish between blended and isolated objects.
 
 \subsubsection{Intercase dependencies}
 
 \begin{itemize}
 
   \item{\hyperref[ag-00-00]{AG-00-00}}
-  \item{\hyperref[ag-00-10]{AG-00-10}}
+  \item{\hyperref[ag-00-05]{AG-00-05}}
 
 \end{itemize}
 
@@ -48,7 +51,7 @@ filesystem at the LSST Data Facility.
 \paragraph{Software}
 
 Release 14.0 of the DM Software Stack will be pre-installed (following the
-procedure described in \hyperref[ag-00-00]{AG-00-00}).
+procedure described in \hyperref[drp-00-00]{DRP-00-00}).
 
 \subsubsection{Input specification}
 
@@ -73,10 +76,12 @@ None.
 \begin{itemize}
 
   \item{The DM Stack shall be initialized using the \texttt{loadLSST} script
-  (as described in \hyperref[ag-00-00]{ag-00-00}).}
+  (as described in \hyperref[ag-00-00]{AG-00-00}).}
 
   \item{A ``Data Butler'' will be initialized to access the repository.}
 
-  \item{Scripts from the \texttt{pipe\_analysis} package will be run on every visit to check for the presence of data products and make plots.}
+  \item{Scripts from the \texttt{pipe\_analysis} package will be run on
+	  every tract to check for the presence of data products and make
+		plots.}
 
 \end{itemize}
