@@ -73,7 +73,14 @@ filesystem accessible from LSST-VC compute notes.
   uncompressed.}
 
   \item{The demo package will be executed by following the instructions in its
-  ``README`` file. The string ``Ok.`` should be returned.}
+  ``README`` file. The string ``Ok.`` should be returned.  
+  Specifically, we execute:
+  \begin{verbatim}
+  setup obs_sdss
+  ./bin/demo.sh
+  python bin/compare expected/Linux64/detected-sources.txt
+  \end{verbatim}
+  }
 
   \item{A shell on an LSST-VC compute node will now be obtained by executing:
 
@@ -84,5 +91,39 @@ filesystem accessible from LSST-VC compute notes.
 
   \item{The demo package will be executed on the compute node and the same
   result obtained.}
+
+  \item{The Alert Production datasets and packages are not yet part of \texttt{lsst\_distrib} and so must be installed separately.   They will be installed as follows on the GPFS filesystem:
+
+  \begin{verbatim}
+  setup git_lfs
+  git clone https://github.com/lsst/ap_verify_hits2015.git
+
+  export AP_VERIFY_HITS2015_DIR=\$PWD/ap_verify_hits2015
+  cd \$AP_VERIFY_HITS2015_DIR
+  setup -r .
+  cd -
+
+  setup obs_decam
+
+  git clone https://github.com/lsst-dm/ap_association
+  cd ap_association
+  setup -k -r .
+  scons 
+  cd - 
+
+  git clone https://github.com/lsst-dm/ap_pipe
+  cd ap_pipe
+  setup -k -r .
+  scons 
+  cd - 
+
+  git clone https://github.com/lsst-dm/ap_verify
+  cd ap_verify
+  setup -k -r .
+  scons 
+  cd - 
+  \end{verbatim}
+
+  and any errors or failures reported.}
 
 \end{enumerate}
