@@ -41,7 +41,7 @@ filesystem at the LSST Data Facility.
 \paragraph{Software}
 
 Release 14.0 of the DM Software Stack will be pre-installed (following the
-procedure described in \hyperref[drp-00-00]{DRP-00-00}).
+procedure described in \hyperref[ag-00-00]{AG-00-00}).
 
 \subsubsection{Input specification}
 
@@ -65,13 +65,33 @@ None.
 
 \begin{itemize}
 
-  \item{The DM Stack shall be initialized using the \texttt{loadLSST} script
-  (as described in \hyperref[ag-00-00]{AG-00-00}).}
+  \item{The DM Stack and Alert Processing packaged shall be initialized 
+  as described in \hyperref[ag-00-00]{AG-00-00}.}
+
+  \item{The alert generation processing will be executed using the verification cluster:
+
+  \begin{verbatim}
+  python ap_verify/bin/prepare_demo_slurm_files.py
+
+  # At present we must run a single ccd+visit to handle ingestion before 
+  # parallel processing can begin
+  ./ap_verify/bin/exec_demo_run_1ccd.sh 410915 25
+
+  ln -s ap_verify/bin/demo_run.sl
+  ln -s ap_verify/bin/demo_cmds.conf
+  sbatch demo_run.sl
+  \end{verbatim}
+
+  and any errors or failures reported.}
+
 
   \item{A ``Data Butler'' will be initialized to access the repository.}
 
   \item{For each of the expected data products types (listed in \S\ref{ag-00-05-items})
   and each of the expected units (PVIs, catalogs, etc.), the data product will be
-  retrieved from the Butler and verified to be non-empty.}
+	retrieved from the Butler and verified to be non-empty.  
+	\texttt{DIAObjects} are currently only stored in a database, without 
+	shims to the Butler, so the existence of the database table and its 
+		non-empty contents will be verified by appropriate SQL queries.}
 
 \end{itemize}

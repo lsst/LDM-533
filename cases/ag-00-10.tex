@@ -18,17 +18,17 @@ Specifically, this will demonstrate that:
 
   \item{Processed visit images have been generated and persisted during
   payload execution;}
+  \item{Each PVI includes a science pixel array, a mask array, and a variance array. (DMS-REQ-0072).}
   \item{Each PVI includes a background model (DMS-REQ-0327), photometric
   zero-point (DMS-REQ-0029), spatially-varying PSF (DMS-REQ-0070) and WCS
   (DMS-REQ-0030).}
-  \item{PSF models correctly predict the ellipticities of stars over the field of view.}
   \item{Saturated pixels are correctly masked.}
   \item{Pixels affected by cosmic rays are correctly masked.}
   \item{The background is not oversubtracted around bright objects.}
 
 \end{itemize}
 
-This test does not include quantitative targets for the science quality criteria; we instead require for each test that we be able to quickly construct a plot or display summary images that allow such a target can be visualized.
+This test does not include quantitative targets for the science quality criteria.
 
 \subsubsection{Intercase dependencies}
 
@@ -82,10 +82,6 @@ None.
   \item{For each processed CCD, the PVI will be retrieved from the Butler, and
   the existence of all components described in \S\ref{ag-00-10-items} will be
   verified.}
-
-  \item{Scripts from the \texttt{pipe\_analysis} package will be run on
-	  every visit to check for the presence of data products and make
-		plots.}
 
   \item{Five sensors will be chosen at random from each of two visits and inspected by eye for unmasked artifacts.}
 

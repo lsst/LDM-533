@@ -252,4 +252,31 @@ All tests are named according to the pattern \textsc{prod-xx-yy} where:
 \input{specs/specs.tex}
 \input{cases/cases.tex}
 
+\appendix
+
+\section{The DECam ```HiTS'' dataset}
+
+We use a subset of the DECam hits dataset, contained in the repository
+\url{https://github.com/lsst/ap\_verify\_hits2015.git}.  As described in
+\url{https://dmtn-039.lsst.io/}, we select HiTS fields \texttt{Blind15A\_26},
+\texttt{Blind15A\_40}, and \texttt{Blind15A\_42}. We construct templates from the best-seeing observations of
+same region of sky using the previous year's observations, labelled
+\texttt{Blind14A\_04}, \texttt{Blind14A\_10}, and \texttt{Blind14A\_09}.
+
+The specific visits we use are:
+
+410915, 410929, 410931, 410971, 410985, 410987, 411021, 411035,
+        411037, 411055, 411069, 411071, 411255, 411269, 411271 , 411305,
+        411319, 411321, 411355, 411369, 411371, 411406, 411420, 411422 ,
+        411456, 411470, 411472, 411657, 411671, 411673, 411707, 411721, 411724,
+        411758, 411772, 411774, 411808, 411822, 411824, 411858, 411872,
+        411874 , 412060, 412074, 412076, 412250, 412264, 412266, 412307,
+        412321, 412324, 412504, 412518, 412520, 412554, 412568, 412570, 412604,
+        412618, 412620, 412654, 412668, 412670, 412704, 412718, 412720, 413635,
+        413649, 413651, 413680, 413694, 413696, 415314, 415328, 415330, 415364,
+        415378, 415380, 419791, 419802, 419804, 421590, 421604, 421606.
+
+For each visit we exclude CCDs 1, 2, and 61, leaving CCDs 3-60 and 62.  We use $g$-band only for these tests due to the need to build templates.
+
+
 \end{document}
