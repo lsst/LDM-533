@@ -1,3 +1,7 @@
+## Ignore generated PDF and intermediate build files:
+LDM-533.pdf
+meta.tex
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
