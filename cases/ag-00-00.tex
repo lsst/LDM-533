@@ -1,0 +1,129 @@
+\subsection{AG-00-00: Installation of the Alert Generation science payload.}
+\label{ag-00-00}
+
+\subsubsection{Requirements}
+
+DMS-REQ-0308.
+
+\subsubsection{Test items}
+
+This test will check:
+
+\begin{itemize}
+
+  \item{That the Alert Generation science payload is available for
+  distribution from documented channels;}
+
+  \item{That the Alert Generation science payload can be installed on
+  LSST Data Facility-managed systems.}
+
+\end{itemize}
+
+\subsubsection{Intercase dependencies}
+
+None.
+
+\subsubsection{Environmental needs}
+
+\paragraph{Hardware}
+
+This test case shall be executed on a developer system at NCSA which serves as
+the ``head node'' or otherwise provides access to filesystems shared by the
+LSST Verification Cluster (LSST-VC). We assume that this system will be
+\texttt{lsst-dev01.ncsa.illinois.edu} and the filesystem will be a GPFS-based
+system mounted at \texttt{/software}.
+
+The test also requires access to one LSST-VC compute node.
+
+\paragraph{Software}
+
+All prerequisite packages listed at
+\url{https://pipelines.lsst.io/install/prereqs/centos.html} must be available
+on the test system and on the LSST-VC compute node.
+
+\subsubsection{Input specification}
+
+No input data is required for this test case.
+
+\subsubsection{Output specification}
+
+The Alert Generation science payload will be made available on a shared
+filesystem accessible from LSST-VC compute notes.
+
+\subsubsection{Procedure}
+
+\begin{enumerate}
+
+  \item{Release 14.0 of the LSST Science Pipelines will be installed into the
+  GPFS filesystem accessible at \texttt{/software} on \texttt{lsst-dev01}
+  following the instructions at
+  \url{https://pipelines.lsst.io/install/newinstall.html}.}
+
+  \item{The lsst\_distrib top level package will be enabled:
+
+  \begin{verbatim}
+  source /software/lsstsw/stack3/loadLSST.bash
+  setup lsst_distrib
+  \end{verbatim}
+  }
+
+  \item{The ``LSST Stack Demo'' package will be downloaded onto the test
+  system from
+  \url{https://github.com/lsst/lsst_dm_stack_demo/releases/tag/14.0} and
+  uncompressed.}
+
+  \item{The demo package will be executed by following the instructions in its
+  ``README`` file. The string ``Ok.`` should be returned.  
+  Specifically, we execute:
+  \begin{verbatim}
+  setup obs_sdss
+  ./bin/demo.sh
+  python bin/compare expected/Linux64/detected-sources.txt
+  \end{verbatim}
+  }
+
+  \item{A shell on an LSST-VC compute node will now be obtained by executing:
+
+  \begin{verbatim}
+  $ srun -I --pty bash
+  \end{verbatim}
+  }
+
+  \item{The demo package will be executed on the compute node and the same
+  result obtained.}
+
+  \item{The Alert Production datasets and packages are not yet part of \texttt{lsst\_distrib} and so must be installed separately.   They will be installed as follows on the GPFS filesystem:
+
+  \begin{verbatim}
+  setup git_lfs
+  git clone https://github.com/lsst/ap_verify_hits2015.git
+
+  export AP_VERIFY_HITS2015_DIR=$PWD/ap_verify_hits2015
+  cd $AP_VERIFY_HITS2015_DIR
+  setup -r .
+  cd -
+
+  setup obs_decam
+
+  git clone https://github.com/lsst-dm/ap_association
+  cd ap_association
+  setup -k -r .
+  scons 
+  cd - 
+
+  git clone https://github.com/lsst-dm/ap_pipe
+  cd ap_pipe
+  setup -k -r .
+  scons 
+  cd - 
+
+  git clone https://github.com/lsst-dm/ap_verify
+  cd ap_verify
+  setup -k -r .
+  scons 
+  cd - 
+  \end{verbatim}
+
+  and any errors or failures reported.}
+
+\end{enumerate}
