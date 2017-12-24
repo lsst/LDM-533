@@ -8,7 +8,7 @@ DMS-REQ-0269, DMS-REQ-0270, DMS-REQ-0347, DMS-REQ-0331.
 \subsubsection{Test items}
 \label{ag-00-20-items}
 
-This test will check that the difference image source catalogs 
+This test will check that the difference image source catalogs
 delivered by the Alert Generation science
 payload meet the requirements laid down by \citeds{LSE-61}.
 
@@ -16,14 +16,16 @@ Specifically, this will demonstrate that:
 
 \begin{itemize}
 
-  \item{Measurements in the catalog are presented in flux units (DMS-REQ-0347);} 
-\item{Each DIASource record contains required attributes
-	(DMS-REQ-0269).}
+  \item{Measurements in the catalog are presented in flux units (DMS-REQ-0347);}
 
-\item{Faint DIASources satisfying additional criteria are stored
-	(DMS-REQ-0270).}
+  \item{Each DIASource record contains an appropriate subset of the attributes
+  required by DMS-REQ-0269. In particular, the LDM-503-3-era pipeline is
+  expected to provide DIASource positions (sky and focal plane), fluxes, and
+  flags indicative of issues encountered during processing.}
 
-  \item{Derived quantities are provided in pre-computed columns (DMS-REQ-0331);} 
+  \item{Faint DIASources satisfying additional criteria are stored (DMS-REQ-0270).}
+
+  \item{Derived quantities are provided in pre-computed columns (DMS-REQ-0331);}
 
 \end{itemize}
 
@@ -77,5 +79,8 @@ None.
   (as described in \hyperref[ag-00-00]{AG-00-00}).}
 
   \item{A ``Data Butler'' will be initialized to access the repository.}
+
+  \item{DIASource records will be accessed by querying the Butler, then
+  examined interactively at a Python prompt.}
 
 \end{itemize}

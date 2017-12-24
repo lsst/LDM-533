@@ -16,18 +16,33 @@ Specifically, this will demonstrate that:
 
 \begin{itemize}
 
-  \item{Measurements in the catalog are presented in flux units
-  (DMS-REQ-0347);}
-\item{Each DIAObject record contains the required attributes (DMS-REQ-0271 \&
-	DMS-REQ-0272);}
-\item{Each DIAObject record characterizes variability using
-	DIASources contained in the required time interval
-	(DMS-REQ-0319).}
- \item{Relevant derived quantities are provided in pre-computed columns
-  (DMS-REQ-0331);}
+  \item{DIAObjects are recorded with unique identifiers (DMS-REQ-0271);}
+
+  \item{Measurements in the catalog are presented in flux units (DMS-REQ-0347);}
+
+  \item{Each DIAObject record contains contains an appropriate set of summary
+  attributes (DMS-REQ-0271 and DMS-REQ-0272). Note:
+
+    \begin{itemize}
+
+      \item{This test is executed independently of the Data Release Production
+      system. Hence, DIAObjects are not associated to Objects, and the
+      association metadata specified by DMS-REQ-0271 is not expected to be
+      available.}
+
+      \item{The LDM-503-3 era pipeline is not expected to calculate or persist
+      all attributes specified by DMS-REQ-0272 requirement.}
+
+    \end{itemize}
+  }
+
+  \item{Relevant derived quantities are provided in pre-computed columns (DMS-REQ-0331);}
+
 \end{itemize}
 
-This test does not include quantitative targets for the science quality criteria.
+
+This test does not include quantitative targets for the science quality
+criteria.
 
 \subsubsection{Intercase dependencies}
 

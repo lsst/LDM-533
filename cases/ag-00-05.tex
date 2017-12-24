@@ -89,9 +89,11 @@ None.
 
   \item{For each of the expected data products types (listed in \S\ref{ag-00-05-items})
   and each of the expected units (PVIs, catalogs, etc.), the data product will be
-	retrieved from the Butler and verified to be non-empty.  
-	\texttt{DIAObjects} are currently only stored in a database, without 
-	shims to the Butler, so the existence of the database table and its 
-		non-empty contents will be verified by appropriate SQL queries.}
+    retrieved from the Butler and verified to be non-empty.}
+
+  \item{\texttt{DIAObjects} are currently only stored in a database, without
+  shims to the Butler, so the existence of the database table and its
+  non-empty contents will be verified by directly accessing it using
+  \texttt{sqlite3} and executing appropriate SQL queries.}
 
 \end{itemize}
