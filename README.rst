@@ -5,7 +5,7 @@ LSST Level 1 System Software Test Specification
 LDM-533
 =======
 
-This document describes the detailed test specification for the LSST Level 3 System.
+This document describes the detailed test specification for the LSST Level 1 System.
 
 **Links**
 
