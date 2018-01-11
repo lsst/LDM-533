@@ -10,7 +10,7 @@
 
 \title[Test Spec for \product]{\product~Test Specification}
 
-\author{Eric C. Bellm}
+\author{Eric C. Bellm, John D. Swinbank}
 \setDocRef{\lsstDocType-\lsstDocNum}
 \setDocDate{\vcsdate}
 
@@ -20,7 +20,8 @@ This document describes the detailed test specification for the \product{}.
 
 % Most recent last
 \setDocChangeRecord{%
-	\addtohist{1}{2017-11-XX}{Initial release of draft version.}{Bellm}
+	\addtohist{1.0}{2018-01-11}{Initial release of draft version.}{Bellm, Swinbank}
+	\addtohist{1.1}{2018-01-11}{Implementation of \jira{RFC-429}}{T.~Jenness}
 }
 
 \setDocCurator{Eric C. Bellm}
@@ -138,7 +139,7 @@ The major activities to be performed are to:
   system as built.}
 
   \item{Ensure that all data products included in the AP payload design are
-  correctly produced and persisted appropriately to the LSST 
+  correctly produced and persisted appropriately to the LSST
   Data Backbone, Alert Distribution System, and/or Alert Filtering service
   as appropriate.}
 
@@ -174,13 +175,13 @@ The following are the major items under test:
 	  them to community brokers;}
 
   \item{The filtering system that allows science users to apply simple
-	  filters to the alert stream;} 
+	  filters to the alert stream;}
 
 
   \item{The Precovery and Forced Photometry payloads that measure flux
 	  levels for new and previously-known sources found in difference
 	  images;}
-	
+
   \item{The Moving Object Processing System payload that identifies solar
 	  system bodies from difference image sources;}
 
