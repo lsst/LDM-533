@@ -1,0 +1,41 @@
+\subsection{AD-00: Alert Distribution Testing}
+\label{ad-00}
+
+\subsubsection{Objective}
+
+This test specification demonstrates the successful execution of the major components of the Alert Distribution system at the scale of LSST Operations.
+
+It will demonstrate that:
+
+\begin{itemize}
+
+  \item{The Alert Distribution payloads 
+	  can be made available on systems managed by the
+  LSST Data Facility;}
+
+  \item{The Alert Distribution payloads can be executed under the
+  control of the Prompt Processing service;}
+
+  \item{All required science data products can be passed through the components
+	  of the alert distribution service.}
+
+\end{itemize}
+
+Note that this test specification does not extend to 
+testing integration of the Alert Distribution System with the Alert Generation Science Pipe or the LSST Science Platform. 
+We also do not test the Alert Database at this time as its functional requirements are not sufficiently specified to enable testing.
+
+\subsubsection{Approach refinements}
+
+The general approach defined in \citeds{LDM-503} is used.
+
+\subsubsection{Test case identification}
+
+\begin{longtable} {|p{0.4\textwidth}|p{0.6\textwidth}|}\hline
+\textbf{Test Case}  & \textbf{Description} \\\hline
+
+\hyperref[ad-00-00]{AD-00-00} & Tests that the Alert Distribution payloads can be installed on LSST Data Facility-managed systems.\\\hline
+\hyperref[ad-00-05]{AD-00-05} & Tests that the Alert Distribution payloads can be executed by the LDF Prompt Processing service. \\\hline
+\hyperref[ad-00-10]{AD-00-10} & Tests that alert packets can be loaded and extracted from the queue system. \\\hline
+\hyperref[ad-00-15]{AD-00-15} & Tests that alert packets can be filtered by the mini-broker system. \\\hline
+\end{longtable}
