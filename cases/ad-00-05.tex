@@ -1,0 +1,65 @@
+\subsection{AD-00-05: Full Stream Alert Distribution}
+\label{ad-00-05}
+
+\subsubsection{Requirements}
+
+DMS-REQ-0002
+
+\subsubsection{Test items}
+\label{ad-00-05-items}
+
+This test will check that the full stream of LSST alerts can be distributed to end users.
+
+Specifically, this will demonstrate that:
+
+\begin{itemize}
+
+  \item{Serialized alert packets can be loaded into the alert distribution system at LSST-relevant scales;}
+  \item{Alert packets can be retrieved from the queue system at LSST-relevant scales.}
+
+\end{itemize}
+
+This test does not include quantitative targets for latency.
+
+\subsubsection{Intercase dependencies}
+
+\begin{itemize}
+
+  \item{\hyperref[ad-00-00]{AD-00-00}}
+
+\end{itemize}
+
+\subsubsection{Environmental needs}
+
+\paragraph{Hardware}
+
+The test shall be carried out on a machine with at least 16\,GB of RAM and
+multiple CPU cores which has access to the \texttt{/datasets} shared (GPFS)
+filesystem at the LSST Data Facility.
+
+\paragraph{Software}
+
+The Kafka cluster and Zookeeper shall be instantiated according to the 
+procedure described in \hyperref[ad-00-00]{AD-00-00}).
+
+\subsubsection{Input specification}
+
+A sample of Avro-formatted alert packets derived from 
+
+This dataset shall be made available \textit{how?  directory of alerts on datasets?}
+
+\subsubsection{Output specification}
+
+None.
+
+\subsubsection{Procedure}
+
+\begin{itemize}
+
+  \item{instructions for loading packets into running Kafka system}
+
+  \item{instructions for retrieving packets}
+
+  \item{instructions for monitoring what is retreived}
+
+\end{itemize}

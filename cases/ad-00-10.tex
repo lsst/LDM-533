@@ -1,0 +1,72 @@
+\subsection{AD-00-10: Simple Filtering of the LSST Alert Stream}
+\label{ad-00-10}
+
+\subsubsection{Requirements}
+
+DMS-REQ-0342, DMS-REQ-0348, DMS-REQ-0343
+
+\subsubsection{Test items}
+\label{ag-00-10-items}
+
+This test will demonstrate the ``mini-broker'' filtering service that 
+
+Specifically, this will demonstrate that:
+
+\begin{itemize}
+
+	\item{The filtering service can retrieve alerts from the full alert stream and filter them according to their contents;}
+	\item{The filtered subset can be delivered to science users.}
+
+\end{itemize}
+
+This test does not include quantitative targets for latency.
+
+\subsubsection{Intercase dependencies}
+
+\begin{itemize}
+
+  \item{\hyperref[ad-00-00]{AD-00-00}}
+  \item{\hyperref[ad-00-05]{AD-00-05}}
+
+\end{itemize}
+
+\subsubsection{Environmental needs}
+
+\paragraph{Hardware}
+
+The test shall be carried out on a machine with at least 16\,GB of RAM and
+multiple CPU cores which has access to the \texttt{/datasets} shared (GPFS)
+filesystem at the LSST Data Facility.
+
+\paragraph{Software}
+
+The Kafka cluster and Zookeeper shall be instantiated according to the 
+procedure described in \hyperref[ad-00-00]{AD-00-00}).
+
+\subsubsection{Input specification}
+
+A sample of Avro-formatted alert packets derived from 
+
+This dataset shall be made available \textit{how?  directory of alerts on datasets?}
+
+\subsubsection{Output specification}
+
+None.
+
+\subsubsection{Procedure}
+
+\begin{itemize}
+
+  \item{instructions for making the mini-broker system listen to the Kafka system}
+
+  \item{instructions for configuring filters}
+
+  \item{instructions for loading packets into running Kafka system}
+
+  \item{instructions for redirecting output to new Kafka topics?}
+
+  \item{instructions for retrieving packets}
+
+  \item{instructions for monitoring what is retreived}
+
+\end{itemize}
