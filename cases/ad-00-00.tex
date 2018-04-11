@@ -3,6 +3,8 @@
 
 \subsubsection{Requirements}
 
+DMS-REQ-0308.
+
 \subsubsection{Test items}
 
 This test will check:
@@ -29,9 +31,11 @@ None.
 \paragraph{Hardware}
 
 This test case shall be executed on the \textit{Kubernetes Commons} at the LDF. 
-\textit{is access to shared storage required?}
+As discussed in https://dmtn-028.lsst.io/, the test machine should have at least 64 GB of memory and access to at least 1.5 TB of shared storage.
 
 \paragraph{Software}
+
+No software outside of the components to be installed in this case are required.
 
 \subsubsection{Input specification}
 
@@ -46,9 +50,15 @@ filesystem accessible from LSST-VC compute notes.
 
 \begin{enumerate}
 
-  \item{Download Kafka Docker image}
-  \item{Download mini-broker Docker image}
-  \item{Download Docker image for consumers?}
-\item{instructions to deploy all}
+
+	\item{Download Kafka Docker image from \url{https://github.com/lsst-dm/alert\_stream}.}
+\textbf{Need to test whether this single-host setup works for Kubernetes:}
+	\item{From the \texttt{alert\_stream} directory, bring up the container networking: \texttt{\$ docker-compose up -d}}
+	\item{Build the docker containers: \texttt{\$ docker build -t "alert\_stream" .}}
+	\item{Confirm that the payload can execute: \texttt{\$ docker run -it alert\_stream python bin/sendAlertStream.py -h}.  A help string should be printed to the terminal.}
+
+
+	\item{Download mini-broker Docker image?  It may be included in \texttt{alert\_stream} above}
+	\item{Download Docker image for consumers?  Probably also in \texttt{alert\_stream}}
 
 \end{enumerate}
