@@ -1,8 +1,12 @@
 \documentclass[DM,lsstdraft,STS,toc]{lsstdoc}
 \usepackage{enumitem}
+\usepackage{booktabs}
 \input meta.tex
 
 \begin{document}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 \def\product{LSST Level 1 System}
 
@@ -22,6 +26,7 @@ This document describes the detailed test specification for the \product{}.
 \setDocChangeRecord{%
 	\addtohist{1.0}{2018-01-11}{Initial release of draft version.}{Bellm, Swinbank}
 	\addtohist{1.1}{2018-01-11}{Implementation of \jira{RFC-429}}{T.~Jenness}
+        \addtohist{1.2}{2018-07-13}{Update document with lates test cases defined in jira}{G.~Comoretto}
 }
 
 \setDocCurator{Eric C. Bellm}
@@ -231,6 +236,8 @@ Refer to individual test cases where applicable.
 
 \subsection{Naming convention}
 
+{\it This naming convention is now obsolete, since the unique identifier will be the JIRA test case ID.}
+
 All tests are named according to the pattern \textsc{prod-xx-yy} where:
 
 \begin{description}[font=\normalfont\scshape]
@@ -251,7 +258,8 @@ All tests are named according to the pattern \textsc{prod-xx-yy} where:
 \end{description}
 
 \input{specs/specs.tex}
-\input{cases/cases.tex}
+%\input{cases/cases.tex}
+\input{jira_docugen.tex}
 
 \appendix
 

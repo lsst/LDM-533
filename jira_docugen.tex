@@ -1,0 +1,971 @@
+\subsection{Test Cases Summary}\label{test-cases-summary}
+
+\begin{longtable}[]{p{3cm}p{13cm}}
+\toprule
+Jira Id & Test Name\tabularnewline
+\midrule
+\endhead
+\protect\hyperlink{lvv-t17---ag-00-00-installation-of-the-alert-generation-science-payload}{LVV-T17}
+&
+\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T17}{AG-00-00:
+Installation of the Alert Generation science payload.}\tabularnewline
+\protect\hyperlink{lvv-t18---ag-00-05-alert-generation-produces-required-data-products}{LVV-T18}
+&
+\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T18}{AG-00-05:
+Alert Generation Produces Required Data Products}\tabularnewline
+\protect\hyperlink{lvv-t19---ag-00-10-scientific-verification-of-processed-visit-images}{LVV-T19}
+&
+\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T19}{AG-00-10:
+Scientific Verification of Processed Visit Images}\tabularnewline
+\protect\hyperlink{lvv-t20---ag-00-15-scientific-verification-of-difference-images}{LVV-T20}
+&
+\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T20}{AG-00-15:
+Scientific Verification of Difference Images}\tabularnewline
+\protect\hyperlink{lvv-t21---ag-00-20-scientific-verification-of-diasource-catalog}{LVV-T21}
+&
+\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T21}{AG-00-20:
+Scientific Verification of DIASource Catalog}\tabularnewline
+\protect\hyperlink{lvv-t22---ag-00-25-scientific-verification-of-diaobject-catalog}{LVV-T22}
+&
+\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T22}{AG-00-25:
+Scientific Verification of DIAObject Catalog}\tabularnewline
+\protect\hyperlink{lvv-t216---ad-00-00-installation-of-the-alert-distribution-payloads}{LVV-T216}
+&
+\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T216}{AD-00-00:
+Installation of the Alert Distribution payloads.}\tabularnewline
+\protect\hyperlink{lvv-t217---ad-00-05-full-stream-alert-distribution}{LVV-T217}
+&
+\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T217}{AD-00-05:
+Full Stream Alert Distribution}\tabularnewline
+\protect\hyperlink{lvv-t218---ad-00-10-simple-filtering-of-the-lsst-alert-stream}{LVV-T218}
+&
+\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T218}{AD-00-10:
+Simple Filtering of the LSST Alert Stream}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\section{Test Cases}\label{test-cases}
+
+\subsection{\texorpdfstring{\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T17}{LVV-T17}
+- AG-00-00: Installation of the Alert Generation science
+payload.}{LVV-T17 - AG-00-00: Installation of the Alert Generation science payload.}}\label{lvv-t17---ag-00-00-installation-of-the-alert-generation-science-payload.}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+Version & Status & Priority & Verification Type & Critical Event &
+Owner\tabularnewline
+\midrule
+\endhead
+1 & Approved & Normal & Test & False & Eric Bellm\tabularnewline
+\bottomrule
+\end{longtable}
+
+\subsubsection{Test Items}\label{test-items}
+
+This test will check:
+
+\begin{itemize}
+\tightlist
+\item
+  That the Alert Generation science payload is available for
+  distribution from documented channels;
+\item
+  That the Alert Generation science payload can be installed on LSST
+  Data Facility-managed systems.
+\end{itemize}
+
+\subsubsection{Requirements}\label{requirements}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-139}{LVV-139} -
+  DMS-REQ-0308-V-01: Software Architecture to Enable Community Re-Use
+\end{itemize}
+
+\subsubsection{Precondition}\label{precondition}
+
+- Input specification\\[2\baselineskip]No input data is required for
+this test case.
+
+\subsubsection{Test Script}\label{test-script}
+
+\textbf{Step 1}\\
+Release 16.0 of the LSST Science Pipelines will be installed into the
+GPFS filesystem accessible at /software on lsst-dev01 following the
+instructions at \url{https://pipelines.lsst.io/install/newinstall.html}
+.\\[2\baselineskip]\textbf{Step 2}\\
+The lsst\_distrib top level package will be
+enabled:\\[2\baselineskip]\hspace*{0.333em} ~ ~ ~source
+/software/lsstsw/stack3/loadLSST.bash\\
+\hspace*{0.333em} ~ ~ ~setup lsst\_distrib\\[2\baselineskip]\textbf{Step
+3}\\
+The ``LSST Stack Demo'' package will be downloaded onto the test system
+from
+\href{https://github.com/lsst/lsst_dm_stack_demo/releases/tag/14.0}{https://github.com/lsst/lsst\_dm\_stack\_demo/releases/tag/16.0}
+and uncompressed.\\[2\baselineskip]\textbf{Step 4}\\
+The demo package will be executed by following the instructions in its
+``README`` file. The string ``Ok.`` should be returned. Specifically, we
+execute:\\
+\hspace*{0.333em} ~ ~ ~setup obs\_sdss\\
+\hspace*{0.333em} ~ ~ ~./bin/demo.sh\\
+\hspace*{0.333em} ~ ~ ~python bin/compare
+expected/Linux64/detected-sources.txt\\[2\baselineskip]\textbf{Step 5}\\
+A shell on an LSST-VC compute node will now be obtained by executing:\\
+\hspace*{0.333em} ~ ~\$ srun -I --pty bash\\[2\baselineskip]\textbf{Step
+6}\\
+The demo package will be executed on the compute node and the same
+result obtained.\\[2\baselineskip]\textbf{Step 7}\\
+The Alert Production datasets and packages are not yet part of
+lsst\_distrib and so must be installed separately. They will be
+installed as follows on the GPFS
+filesystem:\\[2\baselineskip]\hspace*{0.333em} ~ setup git\_lfs\\
+\hspace*{0.333em} ~ git clone
+https://github.com/lsst/ap\_verify\_hits2015.git\\[2\baselineskip]\hspace*{0.333em}
+~ export AP\_VERIFY\_HITS2015\_DIR=\$PWD/ap\_verify\_hits2015 cd
+\$AP\_VERIFY\_HITS2015\_DIR\\
+\hspace*{0.333em} ~ setup -r .\\
+\hspace*{0.333em} ~ cd-\\
+\hspace*{0.333em} ~\\
+\hspace*{0.333em} ~ setup obs\_decam\\
+\hspace*{0.333em} ~ git clone
+https://github.com/lsst-dm/ap\_association\\
+\hspace*{0.333em} ~ cd ap\_association\\
+\hspace*{0.333em} ~ setup -k -r .\\
+\hspace*{0.333em} ~ scons\\
+\hspace*{0.333em} ~ cd-\\
+\hspace*{0.333em} ~\\
+\hspace*{0.333em} ~ git clone https://github.com/lsst-dm/ap\_pipe\\
+\hspace*{0.333em} ~ cd ap\_pipe\\
+\hspace*{0.333em} ~ setup -k -r .\\
+\hspace*{0.333em} ~ scons\\
+\hspace*{0.333em} ~ cd-\\
+\hspace*{0.333em} ~\\
+\hspace*{0.333em} ~ git clone https://github.com/lsst-dm/ap\_verify\\
+\hspace*{0.333em} ~ cd ap\_verify\\
+\hspace*{0.333em} ~ setup -k -r .\\
+\hspace*{0.333em} ~ scons\\
+\hspace*{0.333em} ~ cd-\\[2\baselineskip]and any errors or failures
+reported.\\[2\baselineskip]
+
+\hypertarget{lvv-t18---ag-00-05-alert-generation-produces-required-data-products}{\subsection{\texorpdfstring{\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T18}{LVV-T18}
+- AG-00-05: Alert Generation Produces Required Data
+Products}{LVV-T18 - AG-00-05: Alert Generation Produces Required Data Products}}\label{lvv-t18---ag-00-05-alert-generation-produces-required-data-products}}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+Version & Status & Priority & Verification Type & Critical Event &
+Owner\tabularnewline
+\midrule
+\endhead
+1 & Approved & Normal & Test & False & Eric Bellm\tabularnewline
+\bottomrule
+\end{longtable}
+
+\subsubsection{Test Items}\label{test-items-1}
+
+This test will check that the basic data products produced by Alert
+Generation are generated by execution of the science payload.\\
+These products will include:
+
+\begin{itemize}
+\tightlist
+\item
+  Processed visit images (PVIs; DMS-REQ-0069); • Difference Exposures
+  (DMS-REQ-0010);
+\item
+  DIASource catalogs (DMS-REQ-0269);
+\item
+  DIAObject catalogs (DMS-REQ-0271);
+\end{itemize}
+
+\subsubsection{Requirements}\label{requirements-1}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-29}{LVV-29} -
+  DMS-REQ-0069-V-01: Processed Visit Images
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-7}{LVV-7} -
+  DMS-REQ-0010-V-01: Difference Exposures
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-100}{LVV-100} -
+  DMS-REQ-0269-V-01: DIASource Catalog
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-102}{LVV-102} -
+  DMS-REQ-0271-V-01: DIAObject Catalog
+\end{itemize}
+
+\subsubsection{Precondition}\label{precondition-1}
+
+- Input specification\\[2\baselineskip]A complete processing of the
+DECam ``HiTS'' dataset, as defined at https://dmtn-039.lsst. io/ and
+https://github.com/lsst/ap\_verify\_hits2015, through the Alert
+Generation science payload.\\
+This dataset shall be made available in a standard LSST data repository,
+accessible via the ``Data Butler''.\\
+It is not required that all combinations of visit and CCD have been
+processed successfully: a number of failures are expected. However,
+documentation to describe processing failures should be provided.
+
+\subsubsection{Test Script}\label{test-script-1}
+
+\textbf{Step 1}\\
+The DM Stack and Alert Processing packaged shall be initialized as
+described in LVT-T17 (AG-00-00).\\[2\baselineskip]\textbf{Step 2}\\
+The alert generation processing will be executed using the verification
+cluster:\\[2\baselineskip]```bash\\
+python ap\_verify/bin/prepare\_demo\_slurm\_files.py\\
+\# At present we must run a single ccd+visit to handle ingestion
+before\\
+\# parallel processing can begin\\
+./ap\_verify/bin/exec\_demo\_run\_1ccd.sh 410915 25\\
+ln -s ap\_verify/bin/demo\_run.sl\\
+ln -s ap\_verify/bin/demo\_cmds.conf\\
+sbatch demo\_run.sl\\
+```\\[2\baselineskip]and any errors or failures
+reported.\\[2\baselineskip]\textbf{Step 3}\\
+A ``Data Butler'' will be initialized to access the
+repository.\\[2\baselineskip]\textbf{Step 4}\\
+For each of the expected data products types (listed in §4.2.2) and each
+of the expected units (PVIs, catalogs, etc.), the data product will be
+retrieved from the Butler and verified to be
+non-empty.\\[2\baselineskip]\textbf{Step 5}\\
+DIAObjects are currently only stored in a database, without shims to the
+Butler, so the existence of the database table and its non-empty
+contents will be verified by directly accessing it using sqlite3 and
+executing appropriate SQL queries.\\[2\baselineskip]
+
+\hypertarget{lvv-t19---ag-00-10-scientific-verification-of-processed-visit-images}{\subsection{\texorpdfstring{\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T19}{LVV-T19}
+- AG-00-10: Scientific Verification of Processed Visit
+Images}{LVV-T19 - AG-00-10: Scientific Verification of Processed Visit Images}}\label{lvv-t19---ag-00-10-scientific-verification-of-processed-visit-images}}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+Version & Status & Priority & Verification Type & Critical Event &
+Owner\tabularnewline
+\midrule
+\endhead
+1 & Approved & Normal & Test & False & Eric Bellm\tabularnewline
+\bottomrule
+\end{longtable}
+
+\subsubsection{Test Items}\label{test-items-2}
+
+This test will check that the Processed Visit Images (PVIs) delivered by
+the alert generation science payload meet the requirements laid down by
+LSE-61.\\
+Specifically, this will demonstrate that:
+
+\begin{itemize}
+\tightlist
+\item
+  Processed visit images have been generated and persisted during
+  payload execution;
+\item
+  Each PVI includes a science pixel array, a mask array, and a variance
+  array. (DMS-REQ- 0072).
+\item
+  Each PVI includes a background model (DMS-REQ-0327), photometric
+  zero-point (DMS- REQ-0029), spatially-varying PSF (DMS-REQ-0070) and
+  WCS (DMS-REQ-0030).
+\item
+  Saturated pixels are correctly masked.
+\item
+  Pixels affected by cosmic rays are correctly masked.
+\item
+  The background is not oversubtracted around bright objects.
+\end{itemize}
+
+This test does not include quantitative targets for the science quality
+criteria.
+
+\subsubsection{Requirements}\label{requirements-2}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-29}{LVV-29} -
+  DMS-REQ-0069-V-01: Processed Visit Images
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-158}{LVV-158} -
+  DMS-REQ-0327-V-01: Background Model Calculation
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-12}{LVV-12} -
+  DMS-REQ-0029-V-01: Generate Photometric Zeropoint for Visit Image
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-30}{LVV-30} -
+  DMS-REQ-0070-V-01: Generate PSF for Visit Images
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-13}{LVV-13} -
+  DMS-REQ-0030-V-01: Generate WCS for Visit Images
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-31}{LVV-31} -
+  DMS-REQ-0072-V-01: Processed Visit Image Content
+\end{itemize}
+
+\subsubsection{Precondition}\label{precondition-2}
+
+\textbf{Input specification}\\[2\baselineskip]A complete processing of
+the DECam ``HiTS'' dataset, as defined at https://dmtn-039.lsst.io/ and
+https://github.com/lsst/ap\_verify\_hits2015, through the Alert
+Generation science payload.\\
+This dataset shall be made available in a standard LSST data repository,
+accessible via the ``Data Butler''.\\
+It is not required that all combinations of visit and CCD have been
+processed successfully: a number of failures are expected. However,
+documentation to describe processing failures should be provided.
+
+\subsubsection{Test Script}\label{test-script-2}
+
+\textbf{Step 1}\\
+The DM Stack shall be initialized using the loadLSST script (as
+described in LVV-T17 - AG-00-00).\\[2\baselineskip]\textbf{Step 2}\\
+A ``Data Butler'' will be initialized to access the
+repository.\\[2\baselineskip]\textbf{Step 3}\\
+For each processed CCD, the PVI will be retrieved from the Butler, and
+the existence of all components described in §4.3.2 will be
+verified.\\[2\baselineskip]\textbf{Step 4}\\
+Five sensors will be chosen at random from each of two visits and
+inspected by eye for unmasked artifacts.\\[2\baselineskip]
+
+\hypertarget{lvv-t20---ag-00-15-scientific-verification-of-difference-images}{\subsection{\texorpdfstring{\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T20}{LVV-T20}
+- AG-00-15: Scientific Verification of Difference
+Images}{LVV-T20 - AG-00-15: Scientific Verification of Difference Images}}\label{lvv-t20---ag-00-15-scientific-verification-of-difference-images}}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+Version & Status & Priority & Verification Type & Critical Event &
+Owner\tabularnewline
+\midrule
+\endhead
+1 & Approved & Normal & Test & False & Eric Bellm\tabularnewline
+\bottomrule
+\end{longtable}
+
+\subsubsection{Test Items}\label{test-items-3}
+
+This test will check that the difference images delivered by the Alert
+Generation science pay- load meet the requirements laid down by
+LSE-61.\\
+Specifically, this will demonstrate that:
+
+\begin{itemize}
+\tightlist
+\item
+  Difference images have been generated and persisted during payload
+  execution;
+\item
+  Each difference image includes information about the identity of the
+  input exposures, and metadata such as a representation of the PSF
+  matching kernel (DMS-REQ-0074);
+\item
+  Masks are correctly propagated from the input images.
+\end{itemize}
+
+This test does not include quantitative targets for the science quality
+criteria.
+
+\subsubsection{Requirements}\label{requirements-3}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-7}{LVV-7} -
+  DMS-REQ-0010-V-01: Difference Exposures
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-32}{LVV-32} -
+  DMS-REQ-0074-V-01: Difference Exposure Attributes
+\end{itemize}
+
+\subsubsection{Precondition}\label{precondition-3}
+
+- Input specification\\[2\baselineskip]A complete processing of the
+DECam ``HiTS'' dataset, as defined at https://dmtn-039.lsst. io/ and
+https://github.com/lsst/ap\_verify\_hits2015, through the Alert
+Generation science payload.\\
+This dataset shall be made available in a standard LSST data repository,
+accessible via the ``Data Butler''.\\
+It is not required that all combinations of visit and CCD have been
+processed successfully: a number of failures are expected. However,
+documentation to describe processing failures should be provided.
+
+\subsubsection{Test Script}\label{test-script-3}
+
+\textbf{Step 1}\\
+The DM Stack shall be initialized using the loadLSST script (as
+described in LVV-T-17 AG-00-00).\\[2\baselineskip]\textbf{Step 2}\\
+A ``Data Butler'' will be initialized to access the
+repository.\\[2\baselineskip]\textbf{Step 3}\\
+For each processed CCD, the difference image will be retrieved from the
+Butler, and the existence of all components described in §4.4.2 will be
+verified.\\[2\baselineskip]\textbf{Step 4}\\
+Five sensors will be chosen at random from each of two visits and the
+masks of the input and difference images compared by
+eye.\\[2\baselineskip]
+
+\hypertarget{lvv-t21---ag-00-20-scientific-verification-of-diasource-catalog}{\subsection{\texorpdfstring{\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T21}{LVV-T21}
+- AG-00-20: Scientific Verification of DIASource
+Catalog}{LVV-T21 - AG-00-20: Scientific Verification of DIASource Catalog}}\label{lvv-t21---ag-00-20-scientific-verification-of-diasource-catalog}}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+Version & Status & Priority & Verification Type & Critical Event &
+Owner\tabularnewline
+\midrule
+\endhead
+1 & Approved & Normal & Test & False & Eric Bellm\tabularnewline
+\bottomrule
+\end{longtable}
+
+\subsubsection{Test Items}\label{test-items-4}
+
+This test will check that the difference image source catalogs delivered
+by the Alert Generation science payload meet the requirements laid down
+by LSE-61.
+
+\begin{itemize}
+\tightlist
+\item
+  Specifically, this will demonstrate that:
+\item
+  Measurements in the catalog are presented in flux units
+  (DMS-REQ-0347);
+\item
+  Each DIASource record contains an appropriate subset of the attributes
+  required by DMS-REQ-0269. In particular, the LDM-503-3-era pipeline is
+  expected to provide DIA- Source positions (sky and focal plane),
+  fluxes, and flags indicative of issues encountered during processing.
+\item
+  Faint DIASources satisfying additional criteria are stored
+  (DMS-REQ-0270).
+\item
+  Derived quantities are provided in pre-computed columns
+  (DMS-REQ-0331);
+\end{itemize}
+
+This test does not include quantitative targets for the science quality
+criteria.\\[2\baselineskip]
+
+\subsubsection{Requirements}\label{requirements-4}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-100}{LVV-100} -
+  DMS-REQ-0269-V-01: DIASource Catalog
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-101}{LVV-101} -
+  DMS-REQ-0270-V-01: Faint DIASource Measurements
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-178}{LVV-178} -
+  DMS-REQ-0347-V-01: Measurements in catalogs
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-162}{LVV-162} -
+  DMS-REQ-0331-V-01: Computing Derived Quantities
+\end{itemize}
+
+\subsubsection{Precondition}\label{precondition-4}
+
+- Input specification\\[2\baselineskip]A complete processing of the
+DECam ``HiTS'' dataset, as defined at https://dmtn-039.lsst. io/ and
+https://github.com/lsst/ap\_verify\_hits2015, through the Alert
+Generation science payload.\\
+This dataset shall be made available in a standard LSST data repository,
+accessible via the ``Data Butler''.\\
+It is not required that all combinations of visit and CCD have been
+processed successfully: a number of failures are expected. However,
+documentation to describe processing failures should be provided.
+
+\subsubsection{Test Script}\label{test-script-4}
+
+\textbf{Step 1}\\
+The DM Stack shall be initialized using the loadLSST script (as
+described in LVV-T17 - AG-00-00).\\[2\baselineskip]\textbf{Step 2}\\
+A ``Data Butler'' will be initialized to access the
+repository.\\[2\baselineskip]\textbf{Step 3}\\
+DIASource records will be accessed by querying the Butler, then examined
+interactively at a Python prompt.\\[2\baselineskip]
+
+\hypertarget{lvv-t22---ag-00-25-scientific-verification-of-diaobject-catalog}{\subsection{\texorpdfstring{\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T22}{LVV-T22}
+- AG-00-25: Scientific Verification of DIAObject
+Catalog}{LVV-T22 - AG-00-25: Scientific Verification of DIAObject Catalog}}\label{lvv-t22---ag-00-25-scientific-verification-of-diaobject-catalog}}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+Version & Status & Priority & Verification Type & Critical Event &
+Owner\tabularnewline
+\midrule
+\endhead
+1 & Approved & Normal & Test & False & Eric Bellm\tabularnewline
+\bottomrule
+\end{longtable}
+
+\subsubsection{Test Items}\label{test-items-5}
+
+This test will check that the DIAObject catalogs delivered by the Alert
+Generation science pay- load meet the requirements laid down by
+LSE-61.\\
+Specifically, this will demonstrate that:
+
+\begin{itemize}
+\tightlist
+\item
+  DIAObjects are recorded with unique identifiers (DMS-REQ-0271);
+\item
+  Measurements in the catalog are presented in flux units
+  (DMS-REQ-0347);
+\item
+  EachDIAObjectrecordcontainscontainsanappropriatesetofsummaryattributes(DMS-
+  REQ-0271 and DMS-REQ-0272). Note:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    This test is executed independently of the Data Release Production
+    system. Hence, DIAObjects are not associated to Objects, and the
+    association metadata specified by DMS-REQ-0271 is not expected to be
+    available.
+  \item
+    TheLDM-503-3erapipelineisnotexpectedtocalculateorpersistallattributesspec-
+    ified by DMS-REQ-0272 requirement.
+  \end{itemize}
+\item
+  Relevant derived quantities are provided in pre-computed columns
+  (DMS-REQ-0331);~
+\end{itemize}
+
+This test does not include quantitative targets for the science quality
+criteria.
+
+\subsubsection{Requirements}\label{requirements-5}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-116}{LVV-116} -
+  DMS-REQ-0285-V-01: Level 1 Source Association
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-102}{LVV-102} -
+  DMS-REQ-0271-V-01: DIAObject Catalog
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-103}{LVV-103} -
+  DMS-REQ-0272-V-01: DIAObject Attributes
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-178}{LVV-178} -
+  DMS-REQ-0347-V-01: Measurements in catalogs
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-162}{LVV-162} -
+  DMS-REQ-0331-V-01: Computing Derived Quantities
+\end{itemize}
+
+\subsubsection{Precondition}\label{precondition-5}
+
+\textbf{Input specification}\\[2\baselineskip]A complete processing of
+the DECam ``HiTS'' dataset, as defined at https://dmtn-039.lsst. io/ and
+https://github.com/lsst/ap\_verify\_hits2015, through the Alert
+Generation science payload.\\
+This dataset shall be made available in a standard LSST data repository,
+accessible via the ``Data Butler''.\\
+It is not required that all combinations of visit and CCD have been
+processed successfully: a number of failures are expected. However,
+documentation to describe processing failures should be provided.
+
+\subsubsection{Test Script}\label{test-script-5}
+
+\textbf{Step 1}\\
+The DM Stack shall be initialized using the loadLSST script (as
+described in LVV-T17 - AG-00-00).\\[2\baselineskip]\textbf{Step 2}\\
+sqlite3 or Python's sqlalchemy module will be used to access the Level 1
+database.\\[2\baselineskip]
+
+\subsection{\texorpdfstring{\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T216}{LVV-T216}
+- AD-00-00: Installation of the Alert Distribution
+payloads.}{LVV-T216 - AD-00-00: Installation of the Alert Distribution payloads.}}\label{lvv-t216---ad-00-00-installation-of-the-alert-distribution-payloads.}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+Version & Status & Priority & Verification Type & Critical Event &
+Owner\tabularnewline
+\midrule
+\endhead
+1 & Draft & Normal & Test & False & Eric Bellm\tabularnewline
+\bottomrule
+\end{longtable}
+
+\subsubsection{Test Items}\label{test-items-6}
+
+This test will check:\\[2\baselineskip]
+
+\begin{itemize}
+\tightlist
+\item
+  That the Alert Distribution payloads are available from documented
+  channels.
+\item
+  That the Alert Distribution payloads can be installed on LSST Data
+  Facility-managed systems.
+\item
+  That the Alert Distribution payloads can be executed by LSST Data
+  Facility-managed systems.
+\end{itemize}
+
+\subsubsection{Requirements}\label{requirements-6}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-139}{LVV-139} -
+  DMS-REQ-0308-V-01: Software Architecture to Enable Community Re-Use
+\end{itemize}
+
+\subsubsection{Test Script}\label{test-script-6}
+
+\textbf{Step 1}\\
+Download Kafka Docker image from
+https://github.com/lsst-dm/alert\textbackslash{}\_stream.\\[2\baselineskip]\textbf{Step
+2}\\
+Change to the alert\_stream directory and build the docker image.\\
+
+\begin{verbatim}
+docker build -t "lsst-kub001:5000/alert_stream" .
+\end{verbatim}
+
+\textbf{Step 3}\\
+Register it with Kubernetes\\[2\baselineskip]docker push
+lsst-kub001:5000/alert\_stream\\[2\baselineskip]\textbf{Step 4}\\
+From the alert\_stream/kubernetes directory, start Kafka and
+Zookeeper:\\[2\baselineskip]
+
+\begin{verbatim}
+kubectl create -f zookeeper-service.yaml
+kubectl create -f zookeeper-deployment.yaml
+kubectl create -f kafka-deployment.yaml
+kubectl create -f kafka-service.yaml
+\end{verbatim}
+
+(use kubectl get pods/services between each command to check status;
+wait until each is ``Running'' before starting the next
+command)\\[4\baselineskip]\textbf{Step 5}\\
+Confirm Kafka and Zookeeper are listed when
+running\\[2\baselineskip]kubectl get
+pods\\[2\baselineskip]and\\[2\baselineskip]kubectl get
+services\\[2\baselineskip]
+
+\hypertarget{lvv-t217---ad-00-05-full-stream-alert-distribution}{\subsection{\texorpdfstring{\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T217}{LVV-T217}
+- AD-00-05: Full Stream Alert
+Distribution}{LVV-T217 - AD-00-05: Full Stream Alert Distribution}}\label{lvv-t217---ad-00-05-full-stream-alert-distribution}}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+Version & Status & Priority & Verification Type & Critical Event &
+Owner\tabularnewline
+\midrule
+\endhead
+1 & Draft & Normal & Test & False & Eric Bellm\tabularnewline
+\bottomrule
+\end{longtable}
+
+\subsubsection{Test Items}\label{test-items-7}
+
+This test will check that the full stream of LSST alerts can be
+distributed to end users.\\[2\baselineskip]Specifically, this will
+demonstrate that:
+
+\begin{itemize}
+\tightlist
+\item
+  Serialized alert packets can be loaded into the alert distribution
+  system at LSST-relevant scales (10,000 alerts every 39 seconds);
+\item
+  Alert packets can be retrieved from the queue system at LSST-relevant
+  scales.
+\end{itemize}
+
+\subsubsection{Requirements}\label{requirements-7}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-3}{LVV-3} -
+  DMS-REQ-0002-V-01: Transient Alert Distribution
+\end{itemize}
+
+\subsubsection{Precondition}\label{precondition-6}
+
+Input data: A sample of Avro-formatted alert packets.
+
+\subsubsection{Test Script}\label{test-script-7}
+
+\textbf{Step 1}\\
+Download Kafka Docker image from
+https://github.com/lsst-dm/alert\textbackslash{}\_stream.\\[2\baselineskip]\textbf{Step
+2}\\
+Change to the alert\_stream directory and build the docker image.\\
+
+\begin{verbatim}
+docker build -t "lsst-kub001:5000/alert_stream" .
+\end{verbatim}
+
+\textbf{Step 3}\\
+From the alert\_stream/kubernetes directory, start Kafka and
+Zookeeper:\\[2\baselineskip]
+
+\begin{verbatim}
+kubectl create -f zookeeper-service.yaml
+kubectl create -f zookeeper-deployment.yaml
+kubectl create -f kafka-deployment.yaml
+kubectl create -f kafka-service.yaml
+\end{verbatim}
+
+(use kubectl get pods/services between each command to check status;
+wait until each is ``Running'' before starting the next
+command)\\[4\baselineskip]\textbf{Step 4}\\
+Confirm Kafka and Zookeeper are listed when
+running\\[2\baselineskip]kubectl get
+pods\\[2\baselineskip]and\\[2\baselineskip]kubectl get
+services\\[2\baselineskip]\textbf{Step 5}\\
+Register it with Kubernetes\\[2\baselineskip]docker push
+lsst-kub001:5000/alert\_stream\\[2\baselineskip]\textbf{Step 6}\\
+Start a consumer that monitors the full stream and logs a deserialized
+version of every Nth packet:\\
+
+\begin{verbatim}
+kubectl create -f consumerall-deployment.yaml
+\end{verbatim}
+
+\textbf{Step 7}\\
+
+\begin{verbatim}
+Start a producer that reads alert packets from disk and loads them into the Kafka queue:
+\end{verbatim}
+
+\begin{verbatim}
+kubectl create -f sender-deployment.yaml
+\end{verbatim}
+
+\textbf{Step 8}\\
+Determine the name of the alert sender pod with\\[2\baselineskip]kubectl
+get pods\\[2\baselineskip]Examine output log
+files.\\[2\baselineskip]kubectl logs \textless{}pod
+name\textgreater{}\\[2\baselineskip]Verify that alerts are being sent
+within 40 seconds by subtracting the timing
+measurements.\\[2\baselineskip]\textbf{Step 9}\\
+Determine the name of the consumer pod with\\[2\baselineskip]kubectl get
+pods\\[2\baselineskip]Examine output log files.\\[2\baselineskip]kubectl
+logs \textless{}pod name\textgreater{}\\[2\baselineskip]The packet log
+should show deserialized alert packets with contents matching the input
+packets.\\[4\baselineskip]
+
+\hypertarget{lvv-t218---ad-00-10-simple-filtering-of-the-lsst-alert-stream}{\subsection{\texorpdfstring{\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T218}{LVV-T218}
+- AD-00-10: Simple Filtering of the LSST Alert
+Stream}{LVV-T218 - AD-00-10: Simple Filtering of the LSST Alert Stream}}\label{lvv-t218---ad-00-10-simple-filtering-of-the-lsst-alert-stream}}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+Version & Status & Priority & Verification Type & Critical Event &
+Owner\tabularnewline
+\midrule
+\endhead
+1 & Draft & Normal & Test & False & Eric Bellm\tabularnewline
+\bottomrule
+\end{longtable}
+
+\subsubsection{Test Items}\label{test-items-8}
+
+This test will demonstrate the ``mini-broker'' filtering service that
+returns a subset of alerts from the full stream identified by
+user-provided filters.\\[2\baselineskip]Specifically, this will
+demonstrate that:\\
+
+\begin{itemize}
+\tightlist
+\item
+  The filtering service can retrieve alerts from the full alert stream
+  and filter them according to their contents; ~ ~
+\item
+  The filtered subset can be delivered to science users.
+\end{itemize}
+
+\subsubsection{Requirements}\label{requirements-8}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-173}{LVV-173} -
+  DMS-REQ-0342-V-01: Alert Filtering Service
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-179}{LVV-179} -
+  DMS-REQ-0348-V-01: Pre-defined alert filters
+\item
+  \href{https://jira.lsstcorp.org/browse/LVV-174}{LVV-174} -
+  DMS-REQ-0343-V-01: Performance Requirements for LSST Alert Filtering
+  Service
+\end{itemize}
+
+\subsubsection{Precondition}\label{precondition-7}
+
+Input data: A sample of Avro-formatted alert packets derived from LSST
+simulations corresponding to one night of simulated LSST observing.
+
+\subsubsection{Test Script}\label{test-script-8}
+
+\textbf{Step 1}\\
+Download Kafka Docker image from
+https://github.com/lsst-dm/alert\textbackslash{}\_stream.\\[2\baselineskip]\textbf{Step
+2}\\
+Change to the alert\_stream directory and build the docker image.\\
+
+\begin{verbatim}
+docker build -t "lsst-kub001:5000/alert_stream" .
+\end{verbatim}
+
+\textbf{Step 3}\\
+From the alert\_stream/kubernetes directory, start Kafka and
+Zookeeper:\\[2\baselineskip]
+
+\begin{verbatim}
+kubectl create -f zookeeper-service.yaml
+kubectl create -f zookeeper-deployment.yaml
+kubectl create -f kafka-deployment.yaml
+kubectl create -f kafka-service.yaml
+\end{verbatim}
+
+(use kubectl get pods/services between each command to check status;
+wait until each is ``Running'' before starting the next
+command)\\[4\baselineskip]\textbf{Step 4}\\
+Confirm Kafka and Zookeeper are listed when
+running\\[2\baselineskip]kubectl get
+pods\\[2\baselineskip]and\\[2\baselineskip]kubectl get
+services\\[2\baselineskip]\textbf{Step 5}\\
+Register it with Kubernetes\\[2\baselineskip]docker push
+lsst-kub001:5000/alert\_stream\\[2\baselineskip]\textbf{Step
+6}\\[2\baselineskip]Start 100 consumers that consume the filtered
+streams and logs a deserialized version of every Nth
+packet:\\[2\baselineskip]
+
+\begin{verbatim}
+kubectl create -f consumer1-deployment.yaml
+kubectl create -f consumer2-deployment.yaml
+kubectl create -f consumer3-deployment.yaml
+kubectl create -f consumer4-deployment.yaml
+kubectl create -f consumer5-deployment.yaml
+kubectl create -f consumer6-deployment.yaml
+kubectl create -f consumer7-deployment.yaml
+kubectl create -f consumer8-deployment.yaml
+kubectl create -f consumer9-deployment.yaml
+kubectl create -f consumer10-deployment.yaml
+\end{verbatim}
+
+\textbf{Step 7}\\
+Start 5 filter groups:\\
+
+\begin{verbatim}
+kubectl create -f filterer1-deployment.yaml
+kubectl create -f filterer2-deployment.yaml
+kubectl create -f filterer3-deployment.yaml
+kubectl create -f filterer4-deployment.yaml
+kubectl create -f filterer5-deployment.yaml
+\end{verbatim}
+
+\textbf{Step 8}\\
+Start a producer that reads alert packets from disk and loads them into
+the Kafka queue:\\[2\baselineskip]
+
+\begin{verbatim}
+kubectl create -f sender-deployment.yaml
+\end{verbatim}
+
+\textbf{Step 9}\\
+Determine the name of the alert sender pod with\\[2\baselineskip]kubectl
+get pods\\[2\baselineskip]Examine output log
+files.\\[2\baselineskip]kubectl logs \textless{}pod
+name\textgreater{}\\[2\baselineskip]Verify that alerts are being sent
+within 40 seconds by subtracting the timing
+measurements.\\[2\baselineskip]\textbf{Step 10}\\
+Determine the name of the consumer pods with\\[2\baselineskip]kubectl
+get pods\\[2\baselineskip]Examine output log
+files.\\[2\baselineskip]kubectl logs \textless{}pod
+name\textgreater{}\\[2\baselineskip]The packet log should show
+deserialized alert packets with contents matching the input
+packets.\\[2\baselineskip]
+
+\section{Requirements Traceability}\label{requirements-traceability}
+
+\begin{longtable}[]{p{13cm}p{3cm}}
+\toprule
+Requirements & Test Cases\tabularnewline
+\midrule
+\endhead
+\href{https://jira.lsstcorp.org/browse/LVV-3}{LVV-3 - DMS-REQ-0002-V-01:
+Transient Alert Distribution} &
+\protect\hyperlink{lvv-t217---ad-00-05-full-stream-alert-distribution}{LVV-T217}\tabularnewline
+\href{https://jira.lsstcorp.org/browse/LVV-7}{LVV-7 - DMS-REQ-0010-V-01:
+Difference Exposures} &
+\protect\hyperlink{lvv-t18---ag-00-05-alert-generation-produces-required-data-products}{LVV-T18},
+\protect\hyperlink{lvv-t20---ag-00-15-scientific-verification-of-difference-images}{LVV-T20}\tabularnewline
+\href{https://jira.lsstcorp.org/browse/LVV-12}{LVV-12 -
+DMS-REQ-0029-V-01: Generate Photometric Zeropoint for Visit Image} &
+\protect\hyperlink{lvv-t19---ag-00-10-scientific-verification-of-processed-visit-images}{LVV-T19}\tabularnewline
+\href{https://jira.lsstcorp.org/browse/LVV-13}{LVV-13 -
+DMS-REQ-0030-V-01: Generate WCS for Visit Images} &
+\protect\hyperlink{lvv-t19---ag-00-10-scientific-verification-of-processed-visit-images}{LVV-T19}\tabularnewline
+\href{https://jira.lsstcorp.org/browse/LVV-29}{LVV-29 -
+DMS-REQ-0069-V-01: Processed Visit Images} &
+\protect\hyperlink{lvv-t18---ag-00-05-alert-generation-produces-required-data-products}{LVV-T18},
+\protect\hyperlink{lvv-t19---ag-00-10-scientific-verification-of-processed-visit-images}{LVV-T19}\tabularnewline
+\href{https://jira.lsstcorp.org/browse/LVV-30}{LVV-30 -
+DMS-REQ-0070-V-01: Generate PSF for Visit Images} &
+\protect\hyperlink{lvv-t19---ag-00-10-scientific-verification-of-processed-visit-images}{LVV-T19}\tabularnewline
+\href{https://jira.lsstcorp.org/browse/LVV-31}{LVV-31 -
+DMS-REQ-0072-V-01: Processed Visit Image Content} &
+\protect\hyperlink{lvv-t19---ag-00-10-scientific-verification-of-processed-visit-images}{LVV-T19}\tabularnewline
+\href{https://jira.lsstcorp.org/browse/LVV-32}{LVV-32 -
+DMS-REQ-0074-V-01: Difference Exposure Attributes} &
+\protect\hyperlink{lvv-t20---ag-00-15-scientific-verification-of-difference-images}{LVV-T20}\tabularnewline
+\href{https://jira.lsstcorp.org/browse/LVV-100}{LVV-100 -
+DMS-REQ-0269-V-01: DIASource Catalog} &
+\protect\hyperlink{lvv-t18---ag-00-05-alert-generation-produces-required-data-products}{LVV-T18},
+\protect\hyperlink{lvv-t21---ag-00-20-scientific-verification-of-diasource-catalog}{LVV-T21}\tabularnewline
+\href{https://jira.lsstcorp.org/browse/LVV-101}{LVV-101 -
+DMS-REQ-0270-V-01: Faint DIASource Measurements} &
+\protect\hyperlink{lvv-t21---ag-00-20-scientific-verification-of-diasource-catalog}{LVV-T21}\tabularnewline
+\href{https://jira.lsstcorp.org/browse/LVV-102}{LVV-102 -
+DMS-REQ-0271-V-01: DIAObject Catalog} &
+\protect\hyperlink{lvv-t18---ag-00-05-alert-generation-produces-required-data-products}{LVV-T18},
+\protect\hyperlink{lvv-t22---ag-00-25-scientific-verification-of-diaobject-catalog}{LVV-T22}\tabularnewline
+\href{https://jira.lsstcorp.org/browse/LVV-103}{LVV-103 -
+DMS-REQ-0272-V-01: DIAObject Attributes} &
+\protect\hyperlink{lvv-t22---ag-00-25-scientific-verification-of-diaobject-catalog}{LVV-T22}\tabularnewline
+\href{https://jira.lsstcorp.org/browse/LVV-116}{LVV-116 -
+DMS-REQ-0285-V-01: Level 1 Source Association} &
+\protect\hyperlink{lvv-t22---ag-00-25-scientific-verification-of-diaobject-catalog}{LVV-T22}\tabularnewline
+\href{https://jira.lsstcorp.org/browse/LVV-139}{LVV-139 -
+DMS-REQ-0308-V-01: Software Architecture to Enable Community Re-Use} &
+\protect\hyperlink{lvv-t17---ag-00-00-installation-of-the-alert-generation-science-payload}{LVV-T17},
+\protect\hyperlink{lvv-t216---ad-00-00-installation-of-the-alert-distribution-payloads}{LVV-T216}\tabularnewline
+\href{https://jira.lsstcorp.org/browse/LVV-158}{LVV-158 -
+DMS-REQ-0327-V-01: Background Model Calculation} &
+\protect\hyperlink{lvv-t19---ag-00-10-scientific-verification-of-processed-visit-images}{LVV-T19}\tabularnewline
+\href{https://jira.lsstcorp.org/browse/LVV-162}{LVV-162 -
+DMS-REQ-0331-V-01: Computing Derived Quantities} &
+\protect\hyperlink{lvv-t21---ag-00-20-scientific-verification-of-diasource-catalog}{LVV-T21},
+\protect\hyperlink{lvv-t22---ag-00-25-scientific-verification-of-diaobject-catalog}{LVV-T22}\tabularnewline
+\href{https://jira.lsstcorp.org/browse/LVV-173}{LVV-173 -
+DMS-REQ-0342-V-01: Alert Filtering Service} &
+\protect\hyperlink{lvv-t218---ad-00-10-simple-filtering-of-the-lsst-alert-stream}{LVV-T218}\tabularnewline
+\href{https://jira.lsstcorp.org/browse/LVV-174}{LVV-174 -
+DMS-REQ-0343-V-01: Performance Requirements for LSST Alert Filtering
+Service} &
+\protect\hyperlink{lvv-t218---ad-00-10-simple-filtering-of-the-lsst-alert-stream}{LVV-T218}\tabularnewline
+\href{https://jira.lsstcorp.org/browse/LVV-178}{LVV-178 -
+DMS-REQ-0347-V-01: Measurements in catalogs} &
+\protect\hyperlink{lvv-t21---ag-00-20-scientific-verification-of-diasource-catalog}{LVV-T21},
+\protect\hyperlink{lvv-t22---ag-00-25-scientific-verification-of-diaobject-catalog}{LVV-T22}\tabularnewline
+\href{https://jira.lsstcorp.org/browse/LVV-179}{LVV-179 -
+DMS-REQ-0348-V-01: Pre-defined alert filters} &
+\protect\hyperlink{lvv-t218---ad-00-10-simple-filtering-of-the-lsst-alert-stream}{LVV-T218}\tabularnewline
+\bottomrule
+\end{longtable}
+
