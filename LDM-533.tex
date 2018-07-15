@@ -26,7 +26,7 @@ This document describes the detailed test specification for the \product{}.
 \setDocChangeRecord{%
 	\addtohist{1.0}{2018-01-11}{Initial release of draft version.}{Bellm, Swinbank}
 	\addtohist{1.1}{2018-01-11}{Implementation of \jira{RFC-429}}{T.~Jenness}
-        \addtohist{1.2}{2018-07-13}{Update document with lates test cases defined in jira}{G.~Comoretto}
+        \addtohist{}{2018-07-13}{Update document with latest test cases defined in jira}{G.~Comoretto}
 }
 
 \setDocCurator{Eric C. Bellm}
@@ -236,9 +236,17 @@ Refer to individual test cases where applicable.
 
 \subsection{Naming convention}
 
-{\it This naming convention is now obsolete, since the unique identifier will be the JIRA test case ID.}
+With the introduction of the JIRA Test Management, the following definition have to be considered:
 
-All tests are named according to the pattern \textsc{prod-xx-yy} where:
+\begin{description}
+  \item[LVV]{: Is the label for the ``LSST Verification and Validation'' project in Jira where all information regarding tests are managed.}
+  \item[LVV-XXX]{: Are Verification Elements, where XXX is the Verification Element identifier.  Each Verification Element is derived from a requirement and has at least one Test Case associated. There can be multiple Verification Elements associated with a requirement (in Magic Draw).}
+  \item[LVV-TYYY]{: Are Test Cases. Each Test Case is associated with a Verification Element, where YYY is the Test Case identifier. There can be multiple test cases associated with a Verification element.}
+\end{description}
+
+The old naming convention described bellow is now obsolete, but existing test cases can be encountred in old documents, and will keep the original identifiyer at the beginnig of the name.
+
+Tests was named according to the pattern \textsc{prod-xx-yy} where:
 
 \begin{description}[font=\normalfont\scshape]
 
@@ -258,10 +266,8 @@ All tests are named according to the pattern \textsc{prod-xx-yy} where:
 \end{description}
 
 \input{specs/specs.tex}
-%\input{cases/cases.tex}
 \input{jira_docugen.tex}
 
-\appendix
 
 \section{The DECam ```HiTS'' dataset}
 
