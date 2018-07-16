@@ -1,8 +1,12 @@
 \documentclass[DM,lsstdraft,STS,toc]{lsstdoc}
 \usepackage{enumitem}
+\usepackage{booktabs}
 \input meta.tex
 
 \begin{document}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 \def\product{LSST Level 1 System}
 
@@ -22,6 +26,7 @@ This document describes the detailed test specification for the \product{}.
 \setDocChangeRecord{%
 	\addtohist{1.0}{2018-01-11}{Initial release of draft version.}{Bellm, Swinbank}
 	\addtohist{1.1}{2018-01-11}{Implementation of \jira{RFC-429}}{T.~Jenness}
+        \addtohist{}{2018-07-13}{Update document with latest test cases defined in Jira}{G.~Comoretto}
 }
 
 \setDocCurator{Eric C. Bellm}
@@ -196,19 +201,22 @@ The following are the major items under test:
 
 \begin{itemize}
 
-  \item{Execution of payloads described in \S\ref{sec:tasks};}
-  \item{Persistence of all required data products;}
-  \item{Scientific fidelity of those data products: do they satisfy the
-  requirements described in \citeds{LSE-61}?}
+  \item{Code for the payloads described in \S\ref{sec:tasks} can be made available on systems managed by the LSST Data Facility;}
+  \item{The payloads described in \S\ref{sec:tasks} can be executed under the control of appropriate LDF services;}
+  \item{All required data products are persisted;}
+  \item{Data products exhibit scientific fidelity, satisfying the requirements described in \citeds{LSE-61}.}
 
 \end{itemize}
 
 \subsection{Features not to be tested}
 \label{sec:featnot2test}
 
+This test specification does not extend to demonstrating the detailed compliance of LSST data products with all \citeds[Science Requirements Document]{LPM-17} level requirements: 
+such a demonstration would require carefully curated LSST-like datasets (or simulated data), a detailed understanding of the precursor observing system at the level required by LSST, LSST-like calibration products, etc., which are assumed not to be available for all test cases.
+
 This document does not describe facilities for periodically generating or
 collecting key performance metrics (KPMs), except insofar as those KPMs are
-incidentally measured as part of executing the documented testcases. The KPMs
+incidentally measured as part of executing the documented test cases. The KPMs
 and the system being used to track KPMs and to ensure compliance with
 documented requirements is described in \citeds{LDM-502}.
 
@@ -231,18 +239,23 @@ Refer to individual test cases where applicable.
 
 \subsection{Naming convention}
 
-All tests are named according to the pattern \textsc{prod-xx-yy} where:
+With the introduction of the Jira Test Management, the following definitions have to be considered:
+
+\begin{description}
+  \item[LVV]{: Is the label for the ``LSST Verification and Validation'' project in Jira where all information regarding tests are managed.}
+  \item[LVV-XXX]{: Are Verification Elements, where XXX is the Verification Element identifier.  Each Verification Element is derived from a requirement and has at least one Test Case associated. There can be multiple Verification Elements associated with a requirement.}
+  \item[LVV-TYYY]{: Are Test Cases. Each Test Case is associated with a Verification Element, where YYY is the Test Case identifier. There can be multiple test cases associated with a Verification Element.}
+\end{description}
+
+The old naming convention described below is now obsolete, but existing test cases can be encountered in old documents, and will keep the original identifier at the beginning of the name.
+
+Tests were named according to the pattern \textsc{prod-xx-yy} where:
 
 \begin{description}[font=\normalfont\scshape]
 
   \item[prod]{The product under test. Relevant entries for this document are:
     \begin{description}[font=\normalfont\scshape,topsep=-1.0ex]
       \item[AG]{The Alert Generation payload and associated service}
-      \item[AD]{The Alert Distribution payload and associated service}
-      \item[AF]{The Alert Filtering service}
-      \item[PFP]{The Precovery and Forced Photometry payload and associated
-	      service}
-      \item[MOPS]{The MOPS payload and associated service}
     \end{description}
   }
   \item[xx]{Test specification number (in increments of 10)}
@@ -250,10 +263,8 @@ All tests are named according to the pattern \textsc{prod-xx-yy} where:
 
 \end{description}
 
-\input{specs/specs.tex}
-\input{cases/cases.tex}
+\input{jira_docugen.tex}
 
-\appendix
 
 \section{The DECam ```HiTS'' dataset}
 
