@@ -31,7 +31,7 @@ None.
 \paragraph{Hardware}
 
 This test case shall be executed on the \textit{Kubernetes Commons} at the LDF. 
-As discussed in https://dmtn-028.lsst.io/, the test machine should have at least 64 GB of memory and access to at least 1.5 TB of shared storage.
+As discussed in https://dmtn-028.lsst.io/ and https://dmtn-081.lsst.io/, the test machine should have at least 16 cores, 64 GB of memory and access to at least 1.5 TB of shared storage.
 
 \paragraph{Software}
 
@@ -52,13 +52,38 @@ filesystem accessible from LSST-VC compute notes.
 
 
 	\item{Download Kafka Docker image from \url{https://github.com/lsst-dm/alert\_stream}.}
-\textbf{Need to test whether this single-host setup works for Kubernetes:}
-	\item{From the \texttt{alert\_stream} directory, bring up the container networking: \texttt{\$ docker-compose up -d}}
+\textbf{This Docker Swarm setup needs to be updated for Kubernetes:}
 	\item{Build the docker containers: \texttt{\$ docker build -t "alert\_stream" .}}
+	\item{From the \texttt{alert\_stream} directory, bring up the container networking and start Kafka and Zookeeper:
+
+\begin{verbatim}
+docker network create --driver overlay alert_stream_default
+
+docker service create \
+        --name kafka \
+        --network alert_stream_default \
+        --constraint node.role==manager \
+        -p 9092 \
+        -e KAFKA_BROKER_ID=1 \
+        -e KAFKA_ZOOKEEPER_CONNECT=zookeeper:32181 \
+        -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092 \
+        -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 \ # remove if starting 3 brokers or more
+        -e KAFKA_HEAP_OPTS="-Xmx8g -Xms8g" \
+        -e KAFKA_JVM_PERFORMANCE_OPTS="-XX:MetaspaceSize=96m -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -XX:G1HeapRegionSize=16M -XX:MinMetaspaceFreeRatio=50 -XX:MaxMetaspaceFreeRatio=80" \
+        confluentinc/cp-kafka:4.1.1
+
+docker service create \
+        --name zookeeper \
+        --network alert_stream_default \
+        --constraint node.role==manager \
+        -p 32181 \
+        -e ZOOKEEPER_CLIENT_PORT=32181 \
+        -e ZOOKEEPER_TICK_TIME=2000 \
+        confluentinc/cp-zookeeper:4.1.1
+\end{verbatim}}
+
+	\item{Confirm Kafka and Zookeeper are listed when running \texttt{docker service ls}.}
+
 	\item{Confirm that the payload can execute: \texttt{\$ docker run -it alert\_stream python bin/sendAlertStream.py -h}.  A help string should be printed to the terminal.}
-
-
-	\item{Download mini-broker Docker image?  It may be included in \texttt{alert\_stream} above}
-	\item{Download Docker image for consumers?  Probably also in \texttt{alert\_stream}}
 
 \end{enumerate}
