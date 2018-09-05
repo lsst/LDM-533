@@ -1,8 +1,13 @@
 \documentclass[DM,lsstdraft,STS,toc]{lsstdoc}
 \usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{arydshln}
 \input meta.tex
 
 \begin{document}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 \def\product{LSST Level 1 System}
 
@@ -232,7 +237,25 @@ Refer to individual test cases where applicable.
 
 \subsection{Naming convention}
 
-All tests are named according to the pattern \textsc{prod-xx-yy} where:
+With the introduction of Jira Test Management approach, the following definitions
+have to be considered:
+
+\begin{itemize}
+\item {\bf LVV}: Is the label for the "LSST Verification and Validation" project in Jira where all information regarding tests are managed.
+\item {\bf LVV-XXX}: Are Verification Elements, where XXX is the Verification Element Identifier in Jira. 
+Each Verification Element is derived from a requirement and has at least one Test Case associated.
+There can be multiple Verification Elements associated with a requirement.
+\item {\bf LVV-TYYY}: Are Test Cases. Each Test case is associated qith a Verification Element,
+where YYY is the Test Case identifier.
+There can be multiple Test Cases associated with a Verificatino Element.
+\end{itemize}
+
+The old naming convention described bellow is now obsolete, but existing Test Cases
+can be econtered in old documents. In Jira, the Test Cases defined before the 
+Jira Test Management implementation approach, will keep the old identifier
+at the beginning of the name.
+
+Tests were named according to the pattern \textsc{prod-xx-yy} where:
 
 \begin{description}[font=\normalfont\scshape]
 
@@ -251,11 +274,18 @@ All tests are named according to the pattern \textsc{prod-xx-yy} where:
 
 \end{description}
 
-\input{specs/specs.tex}
-\input{cases/cases.tex}
+\newpage
+\input{summary.tex}
 
+\newpage
+\input{jira_docugen.tex}
+
+\newpage
 \appendix
 
+\input{reqtrace.tex}
+
+\newpage
 \section{The DECam ```HiTS'' dataset}
 
 We use a subset of the DECam hits dataset, contained in the repository
