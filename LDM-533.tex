@@ -2,6 +2,7 @@
 \usepackage{enumitem}
 \usepackage{booktabs}
 \usepackage{arydshln}
+\usepackage{fancyvrb}
 \input meta.tex
 
 \begin{document}
@@ -275,15 +276,13 @@ Tests were named according to the pattern \textsc{prod-xx-yy} where:
 \end{description}
 
 \newpage
-\input{summary.tex}
-
-\newpage
+\input{code_highlighting.tex}
 \input{jira_docugen.tex}
 
 \newpage
 \appendix
 
-\input{reqtrace.tex}
+\input{jira_docugen.appendix.tex}
 
 \newpage
 \section{The DECam ```HiTS'' dataset}
