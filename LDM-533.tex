@@ -1,6 +1,8 @@
 \documentclass[DM,lsstdraft,STS,toc]{lsstdoc}
 \usepackage{enumitem}
 \usepackage{booktabs}
+\usepackage{arydshln}
+
 \input meta.tex
 
 \begin{document}
@@ -247,24 +249,11 @@ With the introduction of the Jira Test Management, the following definitions hav
   \item[LVV-TYYY]{: Are Test Cases. Each Test Case is associated with a Verification Element, where YYY is the Test Case identifier. There can be multiple test cases associated with a Verification Element.}
 \end{description}
 
-The old naming convention described below is now obsolete, but existing test cases can be encountered in old documents, and will keep the original identifier at the beginning of the name.
-
-Tests were named according to the pattern \textsc{prod-xx-yy} where:
-
-\begin{description}[font=\normalfont\scshape]
-
-  \item[prod]{The product under test. Relevant entries for this document are:
-    \begin{description}[font=\normalfont\scshape,topsep=-1.0ex]
-      \item[AG]{The Alert Generation payload and associated service}
-    \end{description}
-  }
-  \item[xx]{Test specification number (in increments of 10)}
-  \item[yy]{Test case number (in increments of 5)}
-
-\end{description}
 
 \input{jira_docugen.tex}
 
+\appendix
+\input{jira_docugen.appendix.tex}
 
 \section{The DECam ```HiTS'' dataset}
 
