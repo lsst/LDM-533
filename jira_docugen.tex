@@ -1,6 +1,11 @@
-\section{Test Cases Summary}\label{test-cases-summary}
+% generated from JIRA project LVV
+% on 2018-12-12 10:29:18
+% using template at <template>.
+% Collecting ATM data from folder: "/Data Management/Prompt/"
+% using docsteady version 1.0rc3.post44+ga3789b2.d20181212
+% Please do not edit -- update information in Jira instead
 
-Follows the list of test cases documented in this specification.
+\section{Test Cases Summary}\label{test-cases-summary}
 
 \begin{longtable}[]{p{3cm}p{13cm}}
 \toprule
@@ -37,14 +42,14 @@ Test Id & Test Name\tabularnewline
 
 \begin{longtable}[]{llllll}
 \toprule
-Version & Status & Priority & Verification Type & Critical Event & Owner
+Version & Status & Priority & Verification Type & Owner
 \\\midrule
 1 & Approved & Normal &
-Test & False & Eric Bellm
+Test & Eric Bellm
 \\\bottomrule
 \end{longtable}
 
-\subsubsection{Requirements}
+\subsubsection{Verification Elements}
 \begin{itemize}
 \item \href{https://jira.lsstcorp.org/browse/LVV-139}{LVV-139} - DMS-REQ-0308-V-01: Software Architecture to Enable Community Re-Use
 \end{itemize}
@@ -64,24 +69,24 @@ This test will check:
 
 
 
-\subsubsection{Intercase Dependencies}
+\subsubsection{Predecessors}
 None.
 
 
 \subsubsection{Environment Needs}
 
 \paragraph{Software}
-Software All prerequisite packages listed at
-https://pipelines.lsst.io/install/ prereqs/centos.html must be available
+All prerequisite packages listed at
+https://pipelines.lsst.io/install/prereqs/centos.html must be available
 on the test system and on the LSST-VC compute node.
 
 
 \paragraph{Hardware}
-Hardware This test case shall be executed on a developer system at NCSA
-which serves as the ``head node'' or otherwise provides access to
-filesystems shared by the LSST Verification Cluster (LSST-VC). We assume
-that this system will be lsst-dev01.ncsa.illinois.edu and the filesystem
-will be a GPFS-based system mounted at /software.\\
+This test case shall be executed on a developer system at NCSA which
+serves as the ``head node'' or otherwise provides access to filesystems
+shared by the LSST Verification Cluster (LSST-VC). We assume that this
+system will be lsst-dev01.ncsa.illinois.edu and the filesystem will be a
+GPFS-based system mounted at /software.\\
 The test also requires access to one LSST-VC compute node.
 
 
@@ -119,9 +124,9 @@ instructions at \url{https://pipelines.lsst.io/install/newinstall.html}
 
             \multirow{3}{*}{ 2 } & Description &
             \begin{minipage}[t]{13cm}{\footnotesize
-            The lsst\_distrib top level package will be enabled:\\
-~\\
-\hspace*{0.333em} ~ ~ ~source /software/lsstsw/stack3/loadLSST.bash\\
+            The lsst\_distrib top level package will be
+enabled:\\[2\baselineskip]\hspace*{0.333em} ~ ~ ~source
+/software/lsstsw/stack3/loadLSST.bash\\
 \hspace*{0.333em} ~ ~ ~setup lsst\_distrib
 
             \vspace{\dp0}
@@ -174,7 +179,7 @@ expected/Linux64/detected-sources.txt
             \multirow{3}{*}{ 5 } & Description &
             \begin{minipage}[t]{13cm}{\footnotesize
             A shell on an LSST-VC compute node will now be obtained by executing:\\
-\hspace*{0.333em} ~ ~\$ srun -I -\/-pty bash
+\hspace*{0.333em} ~ ~\$ srun -I --pty bash
 
             \vspace{\dp0}
             } \end{minipage} \\ \cline{2-3}
@@ -205,14 +210,11 @@ result obtained.
             \begin{minipage}[t]{13cm}{\footnotesize
             The Alert Production datasets and packages are not yet part of
 lsst\_distrib and so must be installed separately. They will be
-installed as follows on the GPFS filesystem:\\
-~\\
-\hspace*{0.333em} ~ setup git\_lfs\\
+installed as follows on the GPFS
+filesystem:\\[2\baselineskip]\hspace*{0.333em} ~ setup git\_lfs\\
 \hspace*{0.333em} ~ git clone
-https://github.com/lsst/ap\_verify\_hits2015.git\\
-~\\
-\hspace*{0.333em} ~ export
-AP\_VERIFY\_HITS2015\_DIR=\$PWD/ap\_verify\_hits2015 cd
+https://github.com/lsst/ap\_verify\_hits2015.git\\[2\baselineskip]\hspace*{0.333em}
+~ export AP\_VERIFY\_HITS2015\_DIR=\$PWD/ap\_verify\_hits2015 cd
 \$AP\_VERIFY\_HITS2015\_DIR\\
 \hspace*{0.333em} ~ setup -r .\\
 \hspace*{0.333em} ~ cd-\\
@@ -235,9 +237,8 @@ https://github.com/lsst-dm/ap\_association\\
 \hspace*{0.333em} ~ cd ap\_verify\\
 \hspace*{0.333em} ~ setup -k -r .\\
 \hspace*{0.333em} ~ scons\\
-\hspace*{0.333em} ~ cd-\\
-~\\
-and any errors or failures reported.
+\hspace*{0.333em} ~ cd-\\[2\baselineskip]and any errors or failures
+reported.
 
             \vspace{\dp0}
             } \end{minipage} \\ \cline{2-3}
@@ -255,14 +256,14 @@ and any errors or failures reported.
 
 \begin{longtable}[]{llllll}
 \toprule
-Version & Status & Priority & Verification Type & Critical Event & Owner
+Version & Status & Priority & Verification Type & Owner
 \\\midrule
 1 & Approved & Normal &
-Test & False & Eric Bellm
+Test & Eric Bellm
 \\\bottomrule
 \end{longtable}
 
-\subsubsection{Requirements}
+\subsubsection{Verification Elements}
 \begin{itemize}
 \item \href{https://jira.lsstcorp.org/browse/LVV-29}{LVV-29} - DMS-REQ-0069-V-01: Processed Visit Images
 \item \href{https://jira.lsstcorp.org/browse/LVV-7}{LVV-7} - DMS-REQ-0010-V-01: Difference Exposures
@@ -288,8 +289,8 @@ These products will include:
 
 
 
-\subsubsection{Intercase Dependencies}
-LVV-T-17 (AG-00-00)
+\subsubsection{Predecessors}
+LVV-T17 (AG-00-00)
 
 
 \subsubsection{Environment Needs}
@@ -345,9 +346,7 @@ described in LVT-T17 (AG-00-00).
             \multirow{3}{*}{ 2 } & Description &
             \begin{minipage}[t]{13cm}{\footnotesize
             The alert generation processing will be executed using the verification
-cluster:\\
-~\\
-```bash\\
+cluster:\\[2\baselineskip]```bash\\
 python ap\_verify/bin/prepare\_demo\_slurm\_files.py\\
 \# At present we must run a single ccd+visit to handle ingestion
 before\\
@@ -356,9 +355,7 @@ before\\
 ln -s ap\_verify/bin/demo\_run.sl\\
 ln -s ap\_verify/bin/demo\_cmds.conf\\
 sbatch demo\_run.sl\\
-```\\
-~\\
-and any errors or failures reported.
+```\\[2\baselineskip]and any errors or failures reported.
 
             \vspace{\dp0}
             } \end{minipage} \\ \cline{2-3}
@@ -423,14 +420,14 @@ executing appropriate SQL queries.
 
 \begin{longtable}[]{llllll}
 \toprule
-Version & Status & Priority & Verification Type & Critical Event & Owner
+Version & Status & Priority & Verification Type & Owner
 \\\midrule
 1 & Approved & Normal &
-Test & False & Eric Bellm
+Test & Eric Bellm
 \\\bottomrule
 \end{longtable}
 
-\subsubsection{Requirements}
+\subsubsection{Verification Elements}
 \begin{itemize}
 \item \href{https://jira.lsstcorp.org/browse/LVV-29}{LVV-29} - DMS-REQ-0069-V-01: Processed Visit Images
 \item \href{https://jira.lsstcorp.org/browse/LVV-158}{LVV-158} - DMS-REQ-0327-V-01: Background Model Calculation
@@ -443,7 +440,7 @@ Test & False & Eric Bellm
 \subsubsection{Test Items}
 This test will check that the Processed Visit Images (PVIs) delivered by
 the alert generation science payload meet the requirements laid down by
-LSE-61.\\
+\citeds{LSE-61}.\\
 Specifically, this will demonstrate that:
 
 \begin{itemize}
@@ -471,7 +468,7 @@ criteria.
 
 
 
-\subsubsection{Intercase Dependencies}
+\subsubsection{Predecessors}
 LVT-T17 (AG-00-00)\\
 LVT-T18 (AG-00-05)
 
@@ -576,14 +573,14 @@ inspected by eye for unmasked artifacts.
 
 \begin{longtable}[]{llllll}
 \toprule
-Version & Status & Priority & Verification Type & Critical Event & Owner
+Version & Status & Priority & Verification Type & Owner
 \\\midrule
 1 & Approved & Normal &
-Test & False & Eric Bellm
+Test & Eric Bellm
 \\\bottomrule
 \end{longtable}
 
-\subsubsection{Requirements}
+\subsubsection{Verification Elements}
 \begin{itemize}
 \item \href{https://jira.lsstcorp.org/browse/LVV-7}{LVV-7} - DMS-REQ-0010-V-01: Difference Exposures
 \item \href{https://jira.lsstcorp.org/browse/LVV-32}{LVV-32} - DMS-REQ-0074-V-01: Difference Exposure Attributes
@@ -592,7 +589,7 @@ Test & False & Eric Bellm
 \subsubsection{Test Items}
 This test will check that the difference images delivered by the Alert
 Generation science pay- load meet the requirements laid down by
-LSE-61.\\
+\citeds{LSE-61}.\\
 Specifically, this will demonstrate that:
 
 \begin{itemize}
@@ -613,7 +610,7 @@ criteria.
 
 
 
-\subsubsection{Intercase Dependencies}
+\subsubsection{Predecessors}
 LVV-T17 (AG-00-00)\\
 LVV-T18 (AG-00-05)
 
@@ -719,14 +716,14 @@ masks of the input and difference images compared by eye.
 
 \begin{longtable}[]{llllll}
 \toprule
-Version & Status & Priority & Verification Type & Critical Event & Owner
+Version & Status & Priority & Verification Type & Owner
 \\\midrule
 1 & Approved & Normal &
-Test & False & Eric Bellm
+Test & Eric Bellm
 \\\bottomrule
 \end{longtable}
 
-\subsubsection{Requirements}
+\subsubsection{Verification Elements}
 \begin{itemize}
 \item \href{https://jira.lsstcorp.org/browse/LVV-100}{LVV-100} - DMS-REQ-0269-V-01: DIASource Catalog
 \item \href{https://jira.lsstcorp.org/browse/LVV-101}{LVV-101} - DMS-REQ-0270-V-01: Faint DIASource Measurements
@@ -737,7 +734,7 @@ Test & False & Eric Bellm
 \subsubsection{Test Items}
 This test will check that the difference image source catalogs delivered
 by the Alert Generation science payload meet the requirements laid down
-by LSE-61.
+by \citeds{LSE-61}.
 
 \begin{itemize}
 \tightlist
@@ -760,12 +757,11 @@ by LSE-61.
 \end{itemize}
 
 This test does not include quantitative targets for the science quality
-criteria.\\
-~\\
+criteria.\\[2\baselineskip]
 
 
 
-\subsubsection{Intercase Dependencies}
+\subsubsection{Predecessors}
 LVT-T17 (AG-00-00)\\
 LVT-T18 (AG-00-05)
 
@@ -855,14 +851,14 @@ interactively at a Python prompt.
 
 \begin{longtable}[]{llllll}
 \toprule
-Version & Status & Priority & Verification Type & Critical Event & Owner
+Version & Status & Priority & Verification Type & Owner
 \\\midrule
 1 & Approved & Normal &
-Test & False & Eric Bellm
+Test & Eric Bellm
 \\\bottomrule
 \end{longtable}
 
-\subsubsection{Requirements}
+\subsubsection{Verification Elements}
 \begin{itemize}
 \item \href{https://jira.lsstcorp.org/browse/LVV-116}{LVV-116} - DMS-REQ-0285-V-01: Level 1 Source Association
 \item \href{https://jira.lsstcorp.org/browse/LVV-102}{LVV-102} - DMS-REQ-0271-V-01: DIAObject Catalog
@@ -874,7 +870,7 @@ Test & False & Eric Bellm
 \subsubsection{Test Items}
 This test will check that the DIAObject catalogs delivered by the Alert
 Generation science pay- load meet the requirements laid down by
-LSE-61.\\
+\citeds{LSE-61}.\\
 Specifically, this will demonstrate that:
 
 \begin{itemize}
@@ -909,7 +905,7 @@ criteria.
 
 
 
-\subsubsection{Intercase Dependencies}
+\subsubsection{Predecessors}
 LVT-T17 (AG-00-00)\\
 LVT-T18 (AG-00-05)
 
@@ -985,14 +981,14 @@ database.
 
 \begin{longtable}[]{llllll}
 \toprule
-Version & Status & Priority & Verification Type & Critical Event & Owner
+Version & Status & Priority & Verification Type & Owner
 \\\midrule
 1 & Draft & Normal &
-Test & False & Eric Bellm
+Test & Eric Bellm
 \\\bottomrule
 \end{longtable}
 
-\subsubsection{Requirements}
+\subsubsection{Verification Elements}
 \begin{itemize}
 \item \href{https://jira.lsstcorp.org/browse/LVV-139}{LVV-139} - DMS-REQ-0308-V-01: Software Architecture to Enable Community Re-Use
 \end{itemize}
@@ -1015,7 +1011,7 @@ This test will check:\\
 
 
 
-\subsubsection{Intercase Dependencies}
+\subsubsection{Predecessors}
 
 \subsubsection{Environment Needs}
 
@@ -1084,8 +1080,7 @@ docker build -t "lsst-kub001:5000/alert_stream"
             \multirow{3}{*}{ 3 } & Description &
             \begin{minipage}[t]{13cm}{\footnotesize
             From the alert\_stream/kubernetes directory, start Kafka and
-Zookeeper:\\
-~\\
+Zookeeper:\\[2\baselineskip]
 
 \begin{verbatim}
 kubectl create -f zookeeper-service.yaml
@@ -1095,8 +1090,8 @@ kubectl create -f kafka-service.yaml
 \end{verbatim}
 
 (use kubectl get pods/services between each command to check status;
-wait until each is "Running" before starting the next command)\\
-~\\
+wait until each is ``Running'' before starting the next
+command)\\[2\baselineskip]
 
             \vspace{\dp0}
             } \end{minipage} \\ \cline{2-3}
@@ -1115,13 +1110,9 @@ wait until each is "Running" before starting the next command)\\
 
             \multirow{3}{*}{ 4 } & Description &
             \begin{minipage}[t]{13cm}{\footnotesize
-            Confirm Kafka and Zookeeper are listed when running\\
-~\\
-kubectl get pods\\
-~\\
-and\\
-~\\
-kubectl get services
+            Confirm Kafka and Zookeeper are listed when
+running\\[2\baselineskip]kubectl get
+pods\\[2\baselineskip]and\\[2\baselineskip]kubectl get services
 
             \vspace{\dp0}
             } \end{minipage} \\ \cline{2-3}
@@ -1132,14 +1123,11 @@ kubectl get services
             } \end{minipage} \\ \cline{2-3}
             & Expected Result &
                 \begin{minipage}[t]{13cm}{\footnotesize
-                Output should be similar to:\\
-~\\
-kubectl get pods\\
+                Output should be similar to:\\[2\baselineskip]kubectl get pods\\
 NAME ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~READY ~ ~ STATUS ~ ~RESTARTS ~ AGE\\
 kafka-768ddf5564-xwgvh ~ ~ ~1/1 ~ ~ ~ Running ~ 0 ~ ~ ~ ~ ~31s\\
-zookeeper-f798cc548-mgkpn ~ 1/1 ~ ~ ~ Running ~ 0 ~ ~ ~ ~ ~1m\\
-~\\
-kubectl get services\\
+zookeeper-f798cc548-mgkpn ~ 1/1 ~ ~ ~ Running ~ 0 ~ ~ ~ ~
+~1m\\[2\baselineskip]kubectl get services\\
 NAME ~ ~ ~ ~TYPE ~ ~ ~ ~CLUSTER-IP ~ ~ ~EXTERNAL-IP ~ PORT(S) ~ ~ AGE\\
 kafka ~ ~ ~ ClusterIP ~ 10.105.19.124 ~ \textless{}none\textgreater{} ~
 ~ ~ ~9092/TCP ~ ~6s\\
@@ -1152,9 +1140,8 @@ zookeeper ~ ClusterIP ~ 10.97.110.124 ~ \textless{}none\textgreater{} ~
 
             \multirow{3}{*}{ 5 } & Description &
             \begin{minipage}[t]{13cm}{\footnotesize
-            Register it with Kubernetes\\
-~\\
-docker push lsst-kub001:5000/alert\_stream
+            Register it with Kubernetes\\[2\baselineskip]docker push
+lsst-kub001:5000/alert\_stream
 
             \vspace{\dp0}
             } \end{minipage} \\ \cline{2-3}
@@ -1177,23 +1164,22 @@ docker push lsst-kub001:5000/alert\_stream
 
 \begin{longtable}[]{llllll}
 \toprule
-Version & Status & Priority & Verification Type & Critical Event & Owner
+Version & Status & Priority & Verification Type & Owner
 \\\midrule
 1 & Draft & Normal &
-Test & False & Eric Bellm
+Test & Eric Bellm
 \\\bottomrule
 \end{longtable}
 
-\subsubsection{Requirements}
+\subsubsection{Verification Elements}
 \begin{itemize}
 \item \href{https://jira.lsstcorp.org/browse/LVV-3}{LVV-3} - DMS-REQ-0002-V-01: Transient Alert Distribution
 \end{itemize}
 
 \subsubsection{Test Items}
 This test will check that the full stream of LSST alerts can be
-distributed to end users.\\
-~\\
-Specifically, this will demonstrate that:
+distributed to end users.\\[2\baselineskip]Specifically, this will
+demonstrate that:
 
 \begin{itemize}
 \tightlist
@@ -1207,7 +1193,7 @@ Specifically, this will demonstrate that:
 
 
 
-\subsubsection{Intercase Dependencies}
+\subsubsection{Predecessors}
 \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T216}{LVV-T216}
 
 
@@ -1298,8 +1284,7 @@ docker build -t "lsst-kub001:5000/alert_stream"
                 & {\small Description} &
                 \begin{minipage}[t]{13cm}{\scriptsize
                 From the alert\_stream/kubernetes directory, start Kafka and
-Zookeeper:\\
-~\\
+Zookeeper:\\[2\baselineskip]
 
 \begin{verbatim}
 kubectl create -f zookeeper-service.yaml
@@ -1309,8 +1294,8 @@ kubectl create -f kafka-service.yaml
 \end{verbatim}
 
 (use kubectl get pods/services between each command to check status;
-wait until each is "Running" before starting the next command)\\
-~\\
+wait until each is ``Running'' before starting the next
+command)\\[2\baselineskip]
 
                 \vspace{\dp0}
                 } \end{minipage} \\ \cdashline{2-3}
@@ -1332,13 +1317,9 @@ wait until each is "Running" before starting the next command)\\
 
                 & {\small Description} &
                 \begin{minipage}[t]{13cm}{\scriptsize
-                Confirm Kafka and Zookeeper are listed when running\\
-~\\
-kubectl get pods\\
-~\\
-and\\
-~\\
-kubectl get services
+                Confirm Kafka and Zookeeper are listed when
+running\\[2\baselineskip]kubectl get
+pods\\[2\baselineskip]and\\[2\baselineskip]kubectl get services
 
                 \vspace{\dp0}
                 } \end{minipage} \\ \cdashline{2-3}
@@ -1347,14 +1328,11 @@ kubectl get services
                 } \end{minipage} \\ \cdashline{2-3}
                 & {\small Expected Result} &
                     \begin{minipage}[t]{13cm}{\scriptsize
-                    Output should be similar to:\\
-~\\
-kubectl get pods\\
+                    Output should be similar to:\\[2\baselineskip]kubectl get pods\\
 NAME ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~READY ~ ~ STATUS ~ ~RESTARTS ~ AGE\\
 kafka-768ddf5564-xwgvh ~ ~ ~1/1 ~ ~ ~ Running ~ 0 ~ ~ ~ ~ ~31s\\
-zookeeper-f798cc548-mgkpn ~ 1/1 ~ ~ ~ Running ~ 0 ~ ~ ~ ~ ~1m\\
-~\\
-kubectl get services\\
+zookeeper-f798cc548-mgkpn ~ 1/1 ~ ~ ~ Running ~ 0 ~ ~ ~ ~
+~1m\\[2\baselineskip]kubectl get services\\
 NAME ~ ~ ~ ~TYPE ~ ~ ~ ~CLUSTER-IP ~ ~ ~EXTERNAL-IP ~ PORT(S) ~ ~ AGE\\
 kafka ~ ~ ~ ClusterIP ~ 10.105.19.124 ~ \textless{}none\textgreater{} ~
 ~ ~ ~9092/TCP ~ ~6s\\
@@ -1372,9 +1350,8 @@ zookeeper ~ ClusterIP ~ 10.97.110.124 ~ \textless{}none\textgreater{} ~
 
                 & {\small Description} &
                 \begin{minipage}[t]{13cm}{\scriptsize
-                Register it with Kubernetes\\
-~\\
-docker push lsst-kub001:5000/alert\_stream
+                Register it with Kubernetes\\[2\baselineskip]docker push
+lsst-kub001:5000/alert\_stream
 
                 \vspace{\dp0}
                 } \end{minipage} \\ \cdashline{2-3}
@@ -1443,17 +1420,11 @@ kubectl create -f sender-deployment.yaml
 
             \multirow{3}{*}{ 4 } & Description &
             \begin{minipage}[t]{13cm}{\footnotesize
-            Determine the name of the consumer pod with\\
-~\\
-kubectl get pods\\
-~\\
-Examine output log files.\\
-~\\
-kubectl logs \textless{}pod name\textgreater{}\\
-~\\
-The packet log should show deserialized alert packets with contents
-matching the input packets.\\
-~\\
+            Determine the name of the consumer pod with\\[2\baselineskip]kubectl get
+pods\\[2\baselineskip]Examine output log files.\\[2\baselineskip]kubectl
+logs \textless{}pod name\textgreater{}\\[2\baselineskip]The packet log
+should show deserialized alert packets with contents matching the input
+packets.\\[2\baselineskip]
 
             \vspace{\dp0}
             } \end{minipage} \\ \cline{2-3}
@@ -1464,26 +1435,26 @@ matching the input packets.\\
             } \end{minipage} \\ \cline{2-3}
             & Expected Result &
                 \begin{minipage}[t]{13cm}{\footnotesize
-                Similar to \{'alertId': 12132024420, 'l1dbId': 71776805594116,
-'diaSource': \{'diaSourceId':\\
-73499448928374785, 'ccdVisitId': 2020011570, 'diaObjectId':
+                Similar to \{'alertId': 12132024420, `l1dbId': 71776805594116,
+`diaSource': \{'diaSourceId':\\
+73499448928374785, `ccdVisitId': 2020011570, `diaObjectId':
 71776805594116, 'ssO\\
-bjectId': None, 'parentDiaSourceId': None, 'midPointTai': 59595.37041,
+bjectId': None, `parentDiaSourceId': None, `midPointTai': 59595.37041,
 'filterNa\\
-me': 'y', 'ra': 172.24912810036074, 'decl': -80.64214929176521,
-'ra\_decl\_Cov': \{\\
-'raSigma': 0.0003428002819418907, 'declSigma': 0.00027273103478364646,
+me': `y', `ra': 172.24912810036074, `decl': -80.64214929176521,
+`ra\_decl\_Cov': \{\\
+`raSigma': 0.0003428002819418907, `declSigma': 0.00027273103478364646,
 'ra\_decl\_\\
-Cov': 0.000628734880592674\}, 'x': 2979.08837890625, 'y':
+Cov': 0.000628734880592674\}, `x': 2979.08837890625, `y':
 3843.328857421875, 'x\_y\\
-\_Cov': \{'xSigma': 0.6135467886924744, 'ySigma': 0.77132648229599,
-'x\_y\_Cov': 0.0\\
-007463791407644749\}, 'apFlux': None, 'apFluxErr': None, 'snr':
+\_Cov': \{'xSigma': 0.6135467886924744, `ySigma': 0.77132648229599,
+`x\_y\_Cov': 0.0\\
+007463791407644749\}, `apFlux': None, `apFluxErr': None, `snr':
 0.366516500711441\\
-04, 'psFlux': 7.698232025177276e-07, 'psRa': None, 'psDecl': None,
-'ps\_Cov': Non\\
-e, 'psLnL': None, 'psChi2': None, 'psNdata': None, 'trailFlux': None,
-'trailRa':\\
+04, `psFlux': 7.698232025177276e-07, `psRa': None, `psDecl': None,
+`ps\_Cov': Non\\
+e, `psLnL': None, `psChi2': None, `psNdata': None, `trailFlux': None,
+`trailRa':\\
 etc.
 
                 \vspace{\dp0}
@@ -1492,16 +1463,11 @@ etc.
 
             \multirow{3}{*}{ 5 } & Description &
             \begin{minipage}[t]{13cm}{\footnotesize
-            Determine the name of the alert sender pod with\\
-~\\
-kubectl get pods\\
-~\\
-Examine output log files.\\
-~\\
-kubectl logs \textless{}pod name\textgreater{}\\
-~\\
-Verify that alerts are being sent within 40 seconds by subtracting the
-timing measurements.
+            Determine the name of the alert sender pod with\\[2\baselineskip]kubectl
+get pods\\[2\baselineskip]Examine output log
+files.\\[2\baselineskip]kubectl logs \textless{}pod
+name\textgreater{}\\[2\baselineskip]Verify that alerts are being sent
+within 40 seconds by subtracting the timing measurements.
 
             \vspace{\dp0}
             } \end{minipage} \\ \cline{2-3}
@@ -1512,17 +1478,13 @@ timing measurements.
             } \end{minipage} \\ \cline{2-3}
             & Expected Result &
                 \begin{minipage}[t]{13cm}{\footnotesize
-                Similar to\\
-~\\
-kubectl logs sender-7d6f98586f-nhwfj\\
+                Similar to\\[2\baselineskip]kubectl logs sender-7d6f98586f-nhwfj\\
 visit: 1570. ~ ~ time: 1530588618.0313473\\
 visits finished: 1 ~ ~ ~time: 1530588653.5614944\\
 visit: 1571. ~ ~ time: 1530588657.0087624\\
 visits finished: 2 ~ ~ ~time: 1530588692.506188\\
 visit: 1572. ~ ~ time: 1530588696.0051727\\
-visits finished: 3 ~ ~ ~time: 1530588731.5900314\\
-~\\
-~\\
+visits finished: 3 ~ ~ ~time: 1530588731.5900314\\[3\baselineskip]
 
                 \vspace{\dp0}
                 } \end{minipage}
@@ -1534,14 +1496,14 @@ visits finished: 3 ~ ~ ~time: 1530588731.5900314\\
 
 \begin{longtable}[]{llllll}
 \toprule
-Version & Status & Priority & Verification Type & Critical Event & Owner
+Version & Status & Priority & Verification Type & Owner
 \\\midrule
 1 & Draft & Normal &
-Test & False & Eric Bellm
+Test & Eric Bellm
 \\\bottomrule
 \end{longtable}
 
-\subsubsection{Requirements}
+\subsubsection{Verification Elements}
 \begin{itemize}
 \item \href{https://jira.lsstcorp.org/browse/LVV-173}{LVV-173} - DMS-REQ-0342-V-01: Alert Filtering Service
 \item \href{https://jira.lsstcorp.org/browse/LVV-179}{LVV-179} - DMS-REQ-0348-V-01: Pre-defined alert filters
@@ -1551,9 +1513,8 @@ Test & False & Eric Bellm
 \subsubsection{Test Items}
 This test will demonstrate the ``mini-broker'' filtering service that
 returns a subset of alerts from the full stream identified by
-user-provided filters.\\
-~\\
-Specifically, this will demonstrate that:\\
+user-provided filters.\\[2\baselineskip]Specifically, this will
+demonstrate that:\\
 
 \begin{itemize}
 \tightlist
@@ -1566,7 +1527,7 @@ Specifically, this will demonstrate that:\\
 
 
 
-\subsubsection{Intercase Dependencies}
+\subsubsection{Predecessors}
 ​\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T216}{LVV-T216}​​​\\
 ​\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCase/LVV-T217}{LVV-T217}​​​
 
@@ -1655,8 +1616,7 @@ docker build -t "lsst-kub001:5000/alert_stream"
                 & {\small Description} &
                 \begin{minipage}[t]{13cm}{\scriptsize
                 From the alert\_stream/kubernetes directory, start Kafka and
-Zookeeper:\\
-~\\
+Zookeeper:\\[2\baselineskip]
 
 \begin{verbatim}
 kubectl create -f zookeeper-service.yaml
@@ -1666,8 +1626,8 @@ kubectl create -f kafka-service.yaml
 \end{verbatim}
 
 (use kubectl get pods/services between each command to check status;
-wait until each is "Running" before starting the next command)\\
-~\\
+wait until each is ``Running'' before starting the next
+command)\\[2\baselineskip]
 
                 \vspace{\dp0}
                 } \end{minipage} \\ \cdashline{2-3}
@@ -1689,13 +1649,9 @@ wait until each is "Running" before starting the next command)\\
 
                 & {\small Description} &
                 \begin{minipage}[t]{13cm}{\scriptsize
-                Confirm Kafka and Zookeeper are listed when running\\
-~\\
-kubectl get pods\\
-~\\
-and\\
-~\\
-kubectl get services
+                Confirm Kafka and Zookeeper are listed when
+running\\[2\baselineskip]kubectl get
+pods\\[2\baselineskip]and\\[2\baselineskip]kubectl get services
 
                 \vspace{\dp0}
                 } \end{minipage} \\ \cdashline{2-3}
@@ -1704,14 +1660,11 @@ kubectl get services
                 } \end{minipage} \\ \cdashline{2-3}
                 & {\small Expected Result} &
                     \begin{minipage}[t]{13cm}{\scriptsize
-                    Output should be similar to:\\
-~\\
-kubectl get pods\\
+                    Output should be similar to:\\[2\baselineskip]kubectl get pods\\
 NAME ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~READY ~ ~ STATUS ~ ~RESTARTS ~ AGE\\
 kafka-768ddf5564-xwgvh ~ ~ ~1/1 ~ ~ ~ Running ~ 0 ~ ~ ~ ~ ~31s\\
-zookeeper-f798cc548-mgkpn ~ 1/1 ~ ~ ~ Running ~ 0 ~ ~ ~ ~ ~1m\\
-~\\
-kubectl get services\\
+zookeeper-f798cc548-mgkpn ~ 1/1 ~ ~ ~ Running ~ 0 ~ ~ ~ ~
+~1m\\[2\baselineskip]kubectl get services\\
 NAME ~ ~ ~ ~TYPE ~ ~ ~ ~CLUSTER-IP ~ ~ ~EXTERNAL-IP ~ PORT(S) ~ ~ AGE\\
 kafka ~ ~ ~ ClusterIP ~ 10.105.19.124 ~ \textless{}none\textgreater{} ~
 ~ ~ ~9092/TCP ~ ~6s\\
@@ -1729,9 +1682,8 @@ zookeeper ~ ClusterIP ~ 10.97.110.124 ~ \textless{}none\textgreater{} ~
 
                 & {\small Description} &
                 \begin{minipage}[t]{13cm}{\scriptsize
-                Register it with Kubernetes\\
-~\\
-docker push lsst-kub001:5000/alert\_stream
+                Register it with Kubernetes\\[2\baselineskip]docker push
+lsst-kub001:5000/alert\_stream
 
                 \vspace{\dp0}
                 } \end{minipage} \\ \cdashline{2-3}
@@ -1752,8 +1704,7 @@ docker push lsst-kub001:5000/alert\_stream
             \multirow{3}{*}{ 2 } & Description &
             \begin{minipage}[t]{13cm}{\footnotesize
             Start 100 consumers that consume the filtered streams and logs a
-deserialized version of every Nth packet:\\
-~\\
+deserialized version of every Nth packet:\\[2\baselineskip]
 
 \begin{verbatim}
 kubectl create -f consumer1-deployment.yaml
@@ -1813,8 +1764,7 @@ kubectl create -f filterer5-deployment.yaml
             \multirow{3}{*}{ 4 } & Description &
             \begin{minipage}[t]{13cm}{\footnotesize
             Start a producer that reads alert packets from disk and loads them into
-the Kafka queue:\\
-~\\
+the Kafka queue:\\[2\baselineskip]
 
 \begin{verbatim}
 kubectl create -f sender-deployment.yaml
@@ -1837,16 +1787,11 @@ kubectl create -f sender-deployment.yaml
 
             \multirow{3}{*}{ 5 } & Description &
             \begin{minipage}[t]{13cm}{\footnotesize
-            Determine the name of the consumer pods with\\
-~\\
-kubectl get pods\\
-~\\
-Examine output log files.\\
-~\\
-kubectl logs \textless{}pod name\textgreater{}\\
-~\\
-The packet log should show deserialized alert packets with contents
-matching the input packets.
+            Determine the name of the consumer pods with\\[2\baselineskip]kubectl
+get pods\\[2\baselineskip]Examine output log
+files.\\[2\baselineskip]kubectl logs \textless{}pod
+name\textgreater{}\\[2\baselineskip]The packet log should show
+deserialized alert packets with contents matching the input packets.
 
             \vspace{\dp0}
             } \end{minipage} \\ \cline{2-3}
@@ -1857,28 +1802,26 @@ matching the input packets.
             } \end{minipage} \\ \cline{2-3}
             & Expected Result &
                 \begin{minipage}[t]{13cm}{\footnotesize
-                Similar to\\
-~\\
-\{'alertId': 12132024420, 'l1dbId': 71776805594116, 'diaSource':
-\{'diaSourceId':\\
-73499448928374785, 'ccdVisitId': 2020011570, 'diaObjectId':
+                Similar to\\[2\baselineskip]\{'alertId': 12132024420, `l1dbId':
+71776805594116, `diaSource': \{'diaSourceId':\\
+73499448928374785, `ccdVisitId': 2020011570, `diaObjectId':
 71776805594116, 'ssO\\
-bjectId': None, 'parentDiaSourceId': None, 'midPointTai': 59595.37041,
+bjectId': None, `parentDiaSourceId': None, `midPointTai': 59595.37041,
 'filterNa\\
-me': 'y', 'ra': 172.24912810036074, 'decl': -80.64214929176521,
-'ra\_decl\_Cov': \{\\
-'raSigma': 0.0003428002819418907, 'declSigma': 0.00027273103478364646,
+me': `y', `ra': 172.24912810036074, `decl': -80.64214929176521,
+`ra\_decl\_Cov': \{\\
+`raSigma': 0.0003428002819418907, `declSigma': 0.00027273103478364646,
 'ra\_decl\_\\
-Cov': 0.000628734880592674\}, 'x': 2979.08837890625, 'y':
+Cov': 0.000628734880592674\}, `x': 2979.08837890625, `y':
 3843.328857421875, 'x\_y\\
-\_Cov': \{'xSigma': 0.6135467886924744, 'ySigma': 0.77132648229599,
-'x\_y\_Cov': 0.0\\
-007463791407644749\}, 'apFlux': None, 'apFluxErr': None, 'snr':
+\_Cov': \{'xSigma': 0.6135467886924744, `ySigma': 0.77132648229599,
+`x\_y\_Cov': 0.0\\
+007463791407644749\}, `apFlux': None, `apFluxErr': None, `snr':
 0.366516500711441\\
-04, 'psFlux': 7.698232025177276e-07, 'psRa': None, 'psDecl': None,
-'ps\_Cov': Non\\
-e, 'psLnL': None, 'psChi2': None, 'psNdata': None, 'trailFlux': None,
-'trailRa':\\
+04, `psFlux': 7.698232025177276e-07, `psRa': None, `psDecl': None,
+`ps\_Cov': Non\\
+e, `psLnL': None, `psChi2': None, `psNdata': None, `trailFlux': None,
+`trailRa':\\
 etc.
 
                 \vspace{\dp0}
@@ -1887,16 +1830,11 @@ etc.
 
             \multirow{3}{*}{ 6 } & Description &
             \begin{minipage}[t]{13cm}{\footnotesize
-            Determine the name of the alert sender pod with\\
-~\\
-kubectl get pods\\
-~\\
-Examine output log files.\\
-~\\
-kubectl logs \textless{}pod name\textgreater{}\\
-~\\
-Verify that alerts are being sent within 40 seconds by subtracting the
-timing measurements.
+            Determine the name of the alert sender pod with\\[2\baselineskip]kubectl
+get pods\\[2\baselineskip]Examine output log
+files.\\[2\baselineskip]kubectl logs \textless{}pod
+name\textgreater{}\\[2\baselineskip]Verify that alerts are being sent
+within 40 seconds by subtracting the timing measurements.
 
             \vspace{\dp0}
             } \end{minipage} \\ \cline{2-3}
@@ -1907,16 +1845,13 @@ timing measurements.
             } \end{minipage} \\ \cline{2-3}
             & Expected Result &
                 \begin{minipage}[t]{13cm}{\footnotesize
-                Similar to\\
-~\\
-kubectl logs sender-7d6f98586f-nhwfj\\
+                Similar to\\[2\baselineskip]kubectl logs sender-7d6f98586f-nhwfj\\
 visit: 1570. ~ ~ time: 1530588618.0313473\\
 visits finished: 1 ~ ~ ~time: 1530588653.5614944\\
 visit: 1571. ~ ~ time: 1530588657.0087624\\
 visits finished: 2 ~ ~ ~time: 1530588692.506188\\
 visit: 1572. ~ ~ time: 1530588696.0051727\\
-visits finished: 3 ~ ~ ~time: 1530588731.5900314\\
-~\\
+visits finished: 3 ~ ~ ~time: 1530588731.5900314\\[2\baselineskip]
 
                 \vspace{\dp0}
                 } \end{minipage}
